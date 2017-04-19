@@ -27,8 +27,6 @@ namespace db
         {
             // TODO: This line of code loads data into the 'databaseDataSet.tb_Rec' table. You can move, or remove it, as needed.
             this.tb_RecTableAdapter.Fill(this.databaseDataSet.tb_Rec);
-            // TODO: This line of code loads data into the 'databaseDataSet.tb_Rec' table. You can move, or remove it, as needed.
-            this.tb_RecTableAdapter.Fill(this.databaseDataSet.tb_Rec);
             oda = new OleDbDataAdapter("SELECT RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage, RecComp FROM tb_Rec", conn);
             dt = new DataTable();
             oda.Fill(dt);

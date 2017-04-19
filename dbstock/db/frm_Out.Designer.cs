@@ -34,6 +34,11 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.databaseDataSet = new db.databaseDataSet();
+            this.tbOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tb_OutTableAdapter = new db.databaseDataSetTableAdapters.tb_OutTableAdapter();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,16 +46,11 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.outAdminDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.outCompDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbOutBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.databaseDataSet = new db.databaseDataSet();
-            this.tbOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.tb_OutTableAdapter = new db.databaseDataSetTableAdapters.tb_OutTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbOutBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbOutBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -100,6 +100,7 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9,
@@ -107,16 +108,50 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
             this.outAdminDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn6,
+            this.outCompDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn7});
-            this.dataGridView1.DataSource = this.tbOutBindingSource1;
+            this.dataGridView1.DataSource = this.tbOutBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(49, 97);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 5;
-            this.dataGridView1.Size = new System.Drawing.Size(1175, 341);
+            this.dataGridView1.Size = new System.Drawing.Size(1190, 341);
             this.dataGridView1.TabIndex = 5;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.button1.Location = new System.Drawing.Point(1106, 53);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "สั่งปริ้น";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // databaseDataSet
+            // 
+            this.databaseDataSet.DataSetName = "databaseDataSet";
+            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tbOutBindingSource
+            // 
+            this.tbOutBindingSource.DataMember = "tb_Out";
+            this.tbOutBindingSource.DataSource = this.databaseDataSet;
+            // 
+            // tb_OutTableAdapter
+            // 
+            this.tb_OutTableAdapter.ClearBeforeFill = true;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Width = 50;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -124,6 +159,7 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "วันที่";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 70;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -143,9 +179,10 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "OutAmount";
-            this.dataGridViewTextBoxColumn2.HeaderText = "จำนวนที่เบิก";
+            this.dataGridViewTextBoxColumn2.HeaderText = "จำนวน";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 60;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -153,6 +190,7 @@
             this.dataGridViewTextBoxColumn3.HeaderText = "หน่วย";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 60;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -168,21 +206,29 @@
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "OutPerson";
-            this.dataGridViewTextBoxColumn6.HeaderText = "ผู้ขอเบิก";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 150;
-            // 
             // outAdminDataGridViewTextBoxColumn
             // 
             this.outAdminDataGridViewTextBoxColumn.DataPropertyName = "OutAdmin";
             this.outAdminDataGridViewTextBoxColumn.HeaderText = "ผู้จ่ายสินค้า";
             this.outAdminDataGridViewTextBoxColumn.Name = "outAdminDataGridViewTextBoxColumn";
             this.outAdminDataGridViewTextBoxColumn.ReadOnly = true;
-            this.outAdminDataGridViewTextBoxColumn.Width = 150;
+            this.outAdminDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "OutPerson";
+            this.dataGridViewTextBoxColumn6.HeaderText = "ผู้เบิกสินค้า";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 125;
+            // 
+            // outCompDataGridViewTextBoxColumn
+            // 
+            this.outCompDataGridViewTextBoxColumn.DataPropertyName = "OutComp";
+            this.outCompDataGridViewTextBoxColumn.HeaderText = "บริษัทผู้เบิก";
+            this.outCompDataGridViewTextBoxColumn.Name = "outCompDataGridViewTextBoxColumn";
+            this.outCompDataGridViewTextBoxColumn.ReadOnly = true;
+            this.outCompDataGridViewTextBoxColumn.Width = 125;
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -191,40 +237,11 @@
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
-            // tbOutBindingSource1
-            // 
-            this.tbOutBindingSource1.DataMember = "tb_Out";
-            this.tbOutBindingSource1.DataSource = this.databaseDataSet;
-            // 
-            // databaseDataSet
-            // 
-            this.databaseDataSet.DataSetName = "databaseDataSet";
-            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tbOutBindingSource
-            // 
-            this.tbOutBindingSource.DataMember = "tb_Out";
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button1.Location = new System.Drawing.Point(1106, 53);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "สั่งปริ้น";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // tb_OutTableAdapter
-            // 
-            this.tb_OutTableAdapter.ClearBeforeFill = true;
-            // 
             // frm_Out
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 488);
+            this.ClientSize = new System.Drawing.Size(1276, 488);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
@@ -235,7 +252,6 @@
             this.Text = "frm_Out";
             this.Load += new System.EventHandler(this.frm_Out_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbOutBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbOutBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -250,7 +266,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource tbOutBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn outDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn outNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn outNameDataGridViewTextBoxColumn;
@@ -262,8 +277,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn outStorageDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button button1;
         private databaseDataSet databaseDataSet;
-        private System.Windows.Forms.BindingSource tbOutBindingSource1;
+        private System.Windows.Forms.BindingSource tbOutBindingSource;
         private databaseDataSetTableAdapters.tb_OutTableAdapter tb_OutTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
@@ -271,8 +287,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn outAdminDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn outCompDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
     }
 }

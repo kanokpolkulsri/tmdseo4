@@ -30,16 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invPriceUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invPriceTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invStorageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbInvBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.databaseDataSet = new db.databaseDataSet();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,10 +50,20 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
+            this.databaseDataSet = new db.databaseDataSet();
+            this.tbInvBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tb_InvTableAdapter = new db.databaseDataSetTableAdapters.tb_InvTableAdapter();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invPriceUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invPriceTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invStorageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbInvBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbInvBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -89,74 +89,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(828, 390);
             this.dataGridView1.TabIndex = 100;
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // invNoDataGridViewTextBoxColumn
-            // 
-            this.invNoDataGridViewTextBoxColumn.DataPropertyName = "InvNo";
-            this.invNoDataGridViewTextBoxColumn.HeaderText = "รหัสสินค้า";
-            this.invNoDataGridViewTextBoxColumn.Name = "invNoDataGridViewTextBoxColumn";
-            this.invNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // invNameDataGridViewTextBoxColumn
-            // 
-            this.invNameDataGridViewTextBoxColumn.DataPropertyName = "InvName";
-            this.invNameDataGridViewTextBoxColumn.HeaderText = "ชื่อสินค้า";
-            this.invNameDataGridViewTextBoxColumn.Name = "invNameDataGridViewTextBoxColumn";
-            this.invNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.invNameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // invAmountDataGridViewTextBoxColumn
-            // 
-            this.invAmountDataGridViewTextBoxColumn.DataPropertyName = "InvAmount";
-            this.invAmountDataGridViewTextBoxColumn.HeaderText = "จำนวนคงเหลือ";
-            this.invAmountDataGridViewTextBoxColumn.Name = "invAmountDataGridViewTextBoxColumn";
-            this.invAmountDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // invUnitDataGridViewTextBoxColumn
-            // 
-            this.invUnitDataGridViewTextBoxColumn.DataPropertyName = "InvUnit";
-            this.invUnitDataGridViewTextBoxColumn.HeaderText = "หน่วย";
-            this.invUnitDataGridViewTextBoxColumn.Name = "invUnitDataGridViewTextBoxColumn";
-            this.invUnitDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // invPriceUnitDataGridViewTextBoxColumn
-            // 
-            this.invPriceUnitDataGridViewTextBoxColumn.DataPropertyName = "InvPriceUnit";
-            this.invPriceUnitDataGridViewTextBoxColumn.HeaderText = "ราคาต่อหน่วย";
-            this.invPriceUnitDataGridViewTextBoxColumn.Name = "invPriceUnitDataGridViewTextBoxColumn";
-            this.invPriceUnitDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // invPriceTotalDataGridViewTextBoxColumn
-            // 
-            this.invPriceTotalDataGridViewTextBoxColumn.DataPropertyName = "InvPriceTotal";
-            this.invPriceTotalDataGridViewTextBoxColumn.HeaderText = "ราคารวม";
-            this.invPriceTotalDataGridViewTextBoxColumn.Name = "invPriceTotalDataGridViewTextBoxColumn";
-            this.invPriceTotalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // invStorageDataGridViewTextBoxColumn
-            // 
-            this.invStorageDataGridViewTextBoxColumn.DataPropertyName = "InvStorage";
-            this.invStorageDataGridViewTextBoxColumn.HeaderText = "ที่เก็บสินค้า";
-            this.invStorageDataGridViewTextBoxColumn.Name = "invStorageDataGridViewTextBoxColumn";
-            this.invStorageDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tbInvBindingSource
-            // 
-            this.tbInvBindingSource.DataMember = "tb_Inv";
-            this.tbInvBindingSource.DataSource = this.databaseDataSet;
-            // 
-            // databaseDataSet
-            // 
-            this.databaseDataSet.DataSetName = "databaseDataSet";
-            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // textBox1
             // 
@@ -288,7 +220,7 @@
             // textBox8
             // 
             this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textBox8.Location = new System.Drawing.Point(901, 56);
+            this.textBox8.Location = new System.Drawing.Point(875, 60);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(168, 21);
             this.textBox8.TabIndex = 8;
@@ -298,7 +230,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label8.Location = new System.Drawing.Point(842, 56);
+            this.label8.Location = new System.Drawing.Point(816, 60);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 17);
             this.label8.TabIndex = 19;
@@ -342,15 +274,86 @@
             this.textBox9.Size = new System.Drawing.Size(58, 20);
             this.textBox9.TabIndex = 22;
             // 
+            // databaseDataSet
+            // 
+            this.databaseDataSet.DataSetName = "databaseDataSet";
+            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tbInvBindingSource
+            // 
+            this.tbInvBindingSource.DataMember = "tb_Inv";
+            this.tbInvBindingSource.DataSource = this.databaseDataSet;
+            // 
             // tb_InvTableAdapter
             // 
             this.tb_InvTableAdapter.ClearBeforeFill = true;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // invNoDataGridViewTextBoxColumn
+            // 
+            this.invNoDataGridViewTextBoxColumn.DataPropertyName = "InvNo";
+            this.invNoDataGridViewTextBoxColumn.HeaderText = "รหัสสินค้า";
+            this.invNoDataGridViewTextBoxColumn.Name = "invNoDataGridViewTextBoxColumn";
+            this.invNoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.invNoDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // invNameDataGridViewTextBoxColumn
+            // 
+            this.invNameDataGridViewTextBoxColumn.DataPropertyName = "InvName";
+            this.invNameDataGridViewTextBoxColumn.HeaderText = "ชื่อสินค้า";
+            this.invNameDataGridViewTextBoxColumn.Name = "invNameDataGridViewTextBoxColumn";
+            this.invNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.invNameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // invAmountDataGridViewTextBoxColumn
+            // 
+            this.invAmountDataGridViewTextBoxColumn.DataPropertyName = "InvAmount";
+            this.invAmountDataGridViewTextBoxColumn.HeaderText = "จำนวน";
+            this.invAmountDataGridViewTextBoxColumn.Name = "invAmountDataGridViewTextBoxColumn";
+            this.invAmountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.invAmountDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // invUnitDataGridViewTextBoxColumn
+            // 
+            this.invUnitDataGridViewTextBoxColumn.DataPropertyName = "InvUnit";
+            this.invUnitDataGridViewTextBoxColumn.HeaderText = "หน่วย";
+            this.invUnitDataGridViewTextBoxColumn.Name = "invUnitDataGridViewTextBoxColumn";
+            this.invUnitDataGridViewTextBoxColumn.ReadOnly = true;
+            this.invUnitDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // invPriceUnitDataGridViewTextBoxColumn
+            // 
+            this.invPriceUnitDataGridViewTextBoxColumn.DataPropertyName = "InvPriceUnit";
+            this.invPriceUnitDataGridViewTextBoxColumn.HeaderText = "ราคาต่อหน่วย";
+            this.invPriceUnitDataGridViewTextBoxColumn.Name = "invPriceUnitDataGridViewTextBoxColumn";
+            this.invPriceUnitDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invPriceTotalDataGridViewTextBoxColumn
+            // 
+            this.invPriceTotalDataGridViewTextBoxColumn.DataPropertyName = "InvPriceTotal";
+            this.invPriceTotalDataGridViewTextBoxColumn.HeaderText = "ราคารวม";
+            this.invPriceTotalDataGridViewTextBoxColumn.Name = "invPriceTotalDataGridViewTextBoxColumn";
+            this.invPriceTotalDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invStorageDataGridViewTextBoxColumn
+            // 
+            this.invStorageDataGridViewTextBoxColumn.DataPropertyName = "InvStorage";
+            this.invStorageDataGridViewTextBoxColumn.HeaderText = "ที่เก็บสินค้า";
+            this.invStorageDataGridViewTextBoxColumn.Name = "invStorageDataGridViewTextBoxColumn";
+            this.invStorageDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // frm_Inv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 622);
+            this.ClientSize = new System.Drawing.Size(1276, 622);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBox9);
@@ -376,8 +379,8 @@
             this.Text = "frm_Inv";
             this.Load += new System.EventHandler(this.frm_Inv_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbInvBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbInvBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

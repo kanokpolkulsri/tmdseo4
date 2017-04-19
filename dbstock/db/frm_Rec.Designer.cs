@@ -30,13 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tbRecBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.databaseDataSet = new db.databaseDataSet();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.databaseDataSet = new db.databaseDataSet();
+            this.tbRecBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tb_RecTableAdapter = new db.databaseDataSetTableAdapters.tb_RecTableAdapter();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,8 +49,8 @@
             this.recCompDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbRecBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbRecBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -59,6 +60,7 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn7,
@@ -70,22 +72,12 @@
             this.recCompDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn6});
             this.dataGridView1.DataSource = this.tbRecBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(34, 100);
+            this.dataGridView1.Location = new System.Drawing.Point(108, 100);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 5;
-            this.dataGridView1.Size = new System.Drawing.Size(1175, 341);
+            this.dataGridView1.Size = new System.Drawing.Size(1067, 341);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // tbRecBindingSource
-            // 
-            this.tbRecBindingSource.DataMember = "tb_Rec";
-            this.tbRecBindingSource.DataSource = this.databaseDataSet;
-            // 
-            // databaseDataSet
-            // 
-            this.databaseDataSet.DataSetName = "databaseDataSet";
-            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -125,9 +117,27 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "ชื่อสินค้า";
             // 
+            // databaseDataSet
+            // 
+            this.databaseDataSet.DataSetName = "databaseDataSet";
+            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tbRecBindingSource
+            // 
+            this.tbRecBindingSource.DataMember = "tb_Rec";
+            this.tbRecBindingSource.DataSource = this.databaseDataSet;
+            // 
             // tb_RecTableAdapter
             // 
             this.tb_RecTableAdapter.ClearBeforeFill = true;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Width = 50;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -135,6 +145,7 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "วันที่";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 70;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -154,9 +165,10 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "RecAmount";
-            this.dataGridViewTextBoxColumn2.HeaderText = "จำนวนที่รับ";
+            this.dataGridViewTextBoxColumn2.HeaderText = "จำนวน";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 60;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -164,6 +176,7 @@
             this.dataGridViewTextBoxColumn3.HeaderText = "หน่วย";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 60;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -185,7 +198,7 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "ผู้รับสินค้า";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 150;
+            this.dataGridViewTextBoxColumn5.Width = 125;
             // 
             // recCompDataGridViewTextBoxColumn
             // 
@@ -193,7 +206,7 @@
             this.recCompDataGridViewTextBoxColumn.HeaderText = "รับจากบริษัท";
             this.recCompDataGridViewTextBoxColumn.Name = "recCompDataGridViewTextBoxColumn";
             this.recCompDataGridViewTextBoxColumn.ReadOnly = true;
-            this.recCompDataGridViewTextBoxColumn.Width = 150;
+            this.recCompDataGridViewTextBoxColumn.Width = 125;
             // 
             // dataGridViewTextBoxColumn6
             // 
@@ -206,7 +219,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 480);
+            this.ClientSize = new System.Drawing.Size(1276, 480);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox1);
@@ -216,8 +229,8 @@
             this.Text = "frm_Rec";
             this.Load += new System.EventHandler(this.frm_Rec_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbRecBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbRecBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,6 +255,7 @@
         private databaseDataSet databaseDataSet;
         private System.Windows.Forms.BindingSource tbRecBindingSource;
         private databaseDataSetTableAdapters.tb_RecTableAdapter tb_RecTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
