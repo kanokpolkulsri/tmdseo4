@@ -131,7 +131,9 @@ namespace db
                 conn.Open();
                 OleDbCommand checkname_bq = new OleDbCommand();
                 checkname_bq.Connection = conn;
-                checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'";
+                //checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'";
+                checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo = '" + textBox5.Text + "'";
+
                 OleDbDataReader readerCheckNameBQ = checkname_bq.ExecuteReader();
                 while (readerCheckNameBQ.Read())
                 {
@@ -147,7 +149,8 @@ namespace db
             {
                 conn.Open();
                 DataSet ds = new DataSet();
-                OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'", conn);
+                //OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'", conn);
+                OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo = '" + textBox5.Text + "'", conn);
                 da.Fill(ds, "Inv_no");
                 string text_no = " ";
                 foreach (DataRow dr in ds.Tables["Inv_no"].Rows)
