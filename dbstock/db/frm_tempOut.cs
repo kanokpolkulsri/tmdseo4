@@ -197,8 +197,8 @@ namespace db
                 conn.Open();
                 OleDbCommand checkname_bq = new OleDbCommand();
                 checkname_bq.Connection = conn;
-                //checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'";
-                checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo = '" + textBox5.Text + "'";
+                checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'";
+                //checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo = '" + textBox5.Text + "'";
 
                 OleDbDataReader readerCheckNameBQ = checkname_bq.ExecuteReader();
                 while (readerCheckNameBQ.Read())
@@ -214,8 +214,8 @@ namespace db
             if (count == 1)
             {
                 DataSet ds = new DataSet();
-                //OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'", conn);
-                OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo = '" + textBox5.Text + "'", conn);
+                OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'", conn);
+                //OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo = '" + textBox5.Text + "'", conn);
 
                 da.Fill(ds, "Inv_no");
                 string text_no = " ";
@@ -234,17 +234,27 @@ namespace db
                 {
                     textBox3.Text = Convert.ToString(int.Parse(textBox3.Text) + 1);
                 }
-                textBox5.Clear();
+                if (textBox5.Text == textBox2.Text)
+                {
+                    textBox5.Clear();
+                }
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             conn.Open();
-            OleDbCommand delete = new OleDbCommand();
-            delete.Connection = conn;
-            delete.CommandText = "DELETE FROM tb_tempOut WHERE ID = " + textBox6.Text + "";
-            delete.ExecuteNonQuery();
+            try
+            {
+                OleDbCommand delete = new OleDbCommand();
+                delete.Connection = conn;
+                delete.CommandText = "DELETE FROM tb_tempOut WHERE ID = " + textBox6.Text + "";
+                delete.ExecuteNonQuery();
+            }
+            catch
+            {
+                MessageBox.Show("ไม่มี ID นี้อยู่ในระบบ");
+            }
             frm_tempOut_Load(sender, e);
             textBox6.Clear();
             conn.Close();

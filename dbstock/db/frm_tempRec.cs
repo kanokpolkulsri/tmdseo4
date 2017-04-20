@@ -175,10 +175,17 @@ namespace db
         private void button3_Click(object sender, EventArgs e)
         {
             conn.Open();
-            OleDbCommand delete = new OleDbCommand();
-            delete.Connection = conn;
-            delete.CommandText = "DELETE FROM tb_tempRec WHERE ID = "+textBox6.Text+"";
-            delete.ExecuteNonQuery();
+            try
+            {
+                OleDbCommand delete = new OleDbCommand();
+                delete.Connection = conn;
+                delete.CommandText = "DELETE FROM tb_tempRec WHERE ID = " + textBox6.Text + "";
+                delete.ExecuteNonQuery();
+            }
+            catch
+            {
+                MessageBox.Show("ไม่มี ID นี้อยู่ในระบบ");
+            }
             frm_tempRec_Load(sender, e);
             textBox6.Clear();
             conn.Close();

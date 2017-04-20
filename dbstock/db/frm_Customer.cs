@@ -91,14 +91,21 @@ namespace db
         private void button2_Click(object sender, EventArgs e)
         {
             conn.Open();
-            OleDbCommand delete = new OleDbCommand();
-            delete.Connection = conn;
-            delete.CommandText = "DELETE FROM tb_Customer WHERE ID = " + textBox8.Text + "";
-            delete.ExecuteNonQuery();
+            try
+            {
+                OleDbCommand delete = new OleDbCommand();
+                delete.Connection = conn;
+                delete.CommandText = "DELETE FROM tb_Customer WHERE ID = " + textBox8.Text + "";
+                delete.ExecuteNonQuery();
+                MessageBox.Show("ลบข้อมูลสมาชิกเรียบร้อย");
+            }
+            catch
+            {
+                MessageBox.Show("ไม่มี ID นี้อยู่ในระบบ");
+            }
             frm_Customer_Load(sender, e);
             textBox8.Clear();
             conn.Close();
-            MessageBox.Show("ลบข้อมูลสมาชิกเรียบร้อย");
         }
     }
 }
