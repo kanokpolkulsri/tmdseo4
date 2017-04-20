@@ -73,6 +73,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DGV Printer">
+      <HintPath>bin\DGV Printer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -90,6 +93,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>databaseDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="forTempOut.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>forTempOut.xsd</DependentUpon>
     </Compile>
     <Compile Include="frm_admin.cs">
       <SubType>Form</SubType>
@@ -194,6 +202,17 @@
     </None>
     <None Include="databaseDataSet.xss">
       <DependentUpon>databaseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="forTempOut.xsc">
+      <DependentUpon>forTempOut.xsd</DependentUpon>
+    </None>
+    <None Include="forTempOut.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>forTempOut.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="forTempOut.xss">
+      <DependentUpon>forTempOut.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

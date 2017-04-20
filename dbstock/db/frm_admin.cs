@@ -31,6 +31,36 @@ namespace db
             dt = new DataTable();
             oda.Fill(dt);
             dataGridView1.DataSource = dt;
+
+            checkProject(sender, e);
+            
+        }
+
+        private void checkProject(object sender, EventArgs e)
+        {
+            if (textBox9.Text == "" && textBox10.Text == "")
+            {
+                conn.Open();
+                DataSet ds = new DataSet();
+                OleDbDataAdapter da = new OleDbDataAdapter("SELECT ProjName, ProjWBS FROM tb_Project", conn);
+                da.Fill(ds, "data_Proj");
+                string text_name = "", text_wbs = "";
+                foreach (DataRow dr in ds.Tables["data_Proj"].Rows)
+                {
+                    text_name = dr.ItemArray[0] + "";
+                    text_wbs = dr.ItemArray[1] + "";
+                    break;
+                }
+                conn.Close();
+                if (text_name != "" && text_wbs != "")
+                {
+                    textBox10.Text = text_name;
+                    textBox9.Text = text_wbs;
+                    button2.Hide();
+                    textBox9.ReadOnly = true;
+                    textBox10.ReadOnly = true;
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -106,6 +136,22 @@ namespace db
             {
                 frm_admin_Load(sender, e);
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+            conn.Open();
+            OleDbCommand command2 = new OleDbCommand();
+            command2.Connection = conn;
+            command2.CommandText = "INSERT into tb_Project (ProjName, ProjWBS) VALUES ('" + textBox10.Text + "', '" + textBox9.Text + "')";
+            command2.ExecuteNonQuery();
+            conn.Close();
+            button2.Hide();
+            textBox9.ReadOnly = true;
+            textBox10.ReadOnly = true;
+            MessageBox.Show("ลงทะเบียนโครงการเรียบร้อย");
+            frm_admin_Load(sender, e);
         }
     }
 }

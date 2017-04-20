@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Drawing.Printing;
+using DGVPrinterHelper;
 
 namespace db
 {
@@ -69,35 +70,57 @@ namespace db
         
         private void printDoc_PrintPage(object sender, PrintPageEventArgs e)
         {
+            
             //print header
             e.Graphics.DrawString("Header Report Title", new Font("Arial", 20), Brushes.Black, 10, 10);
             e.Graphics.DrawLine(Pens.Gray, 10, 50, 830, 50);
+            
+            /*
             //print content
             int position = 130;
             e.Graphics.DrawString("- - data from datagrid view --", new Font("Arial", 16), Brushes.Black, 10, 100);
             foreach (DataGridViewRow item in dataGridView1.Rows)
             {
-                e.Graphics.DrawString((string)item.Cells[0].Value, new Font("Arial", 10), Brushes.Black, 10, position);
+                e.Graphics.DrawString((string)item.Cells[1].Value, new Font("Arial", 10), Brushes.Black, 10, position);
                 position += 20;
-            } 
+            } */
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            
+        { 
+            /*
             PrintDocument printDoc = new PrintDocument();
             printDoc.DocumentName = "Test Document";
             printDoc.PrintPage += new PrintPageEventHandler(printDoc_PrintPage);
 
             PrintDialog printDlg = new PrintDialog();
-            PrintPreviewDialog printPrvDlg = new PrintPreviewDialog();
-            printPrvDlg.ShowDialog();
+            //PrintPreviewDialog printPrvDlg = new PrintPreviewDialog();
+            //printPrvDlg.ShowDialog();
 
             printDlg.Document = printDoc;
             if (printDlg.ShowDialog() == DialogResult.OK)
             {
                 printDoc.Print();
             }
+            */
+
+            DGVPrinter printer = new DGVPrinter();
+
+            printer.Title = "Customer Report"; //Header
+            printer.SubTitle = "Your Subtitle";
+            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+            printer.PageNumbers = true;
+            printer.PageNumberInHeader = false;
+            printer.PorportionalColumns = true;
+            printer.HeaderCellAlignment = StringAlignment.Near;
+            printer.Footer = "Foxlearn";
+            printer.FooterSpacing = 15;
+            try
+            {
+                printer.PrintDataGridView(dataGridView1);
+            }
+            catch { }
             
         }
 

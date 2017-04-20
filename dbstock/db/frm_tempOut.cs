@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using DGVPrinterHelper;
 
 namespace db
 {
@@ -28,12 +29,14 @@ namespace db
         {
             // TODO: This line of code loads data into the 'databaseDataSet.tb_tempOut' table. You can move, or remove it, as needed.
             this.tb_tempOutTableAdapter.Fill(this.databaseDataSet.tb_tempOut);
-            oda = new OleDbDataAdapter("SELECT ID, OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPriceTotal, OutPerson, OutStorage, OutAdmin FROM tb_tempOut", conn);
+            //oda = new OleDbDataAdapter("SELECT ID, OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPriceTotal, OutPerson, OutStorage, OutAdmin FROM tb_tempOut", conn);
+            oda = new OleDbDataAdapter("SELECT ID, OutNo, OutName, OutAmount, OutUnit FROM tb_tempOut", conn);
             dt = new DataTable();
             oda.Fill(dt);
             dataGridView1.DataSource = dt;
             textBox1.Text = DateTime.Now.ToString("dd/MM/yyyy");
             ActiveControl = textBox5;
+            textBox8.ReadOnly = true;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -131,7 +134,7 @@ namespace db
                         checkamount = amount_db - amount_program;
                         if (checkamount >= 0 && text_invname != "" && text_recunit != "" && text_priceunit != "" && text_Amount != "" && text_storage != "")
                         {
-                            addinv.CommandText = "INSERT into tb_tempOut (OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPerson, OutStorage, OutAdmin) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "', '" + text_invname + "', '" + textBox3.Text + "','" + text_recunit + "','" + text_priceunit + "','" + textBox4.Text + "','" + text_storage + "','" + textBox7.Text + "')";
+                            addinv.CommandText = "INSERT into tb_tempOut (OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPerson, OutStorage, OutAdmin, OutComp) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "', '" + text_invname + "', '" + textBox3.Text + "','" + text_recunit + "','" + text_priceunit + "','" + textBox4.Text + "','" + text_storage + "','" + textBox7.Text + "','" + textBox8.Text + "')";
                             addinv.ExecuteNonQuery();
                             textBox1.Clear();
                             textBox2.Clear();
@@ -176,17 +179,40 @@ namespace db
 
             OleDbCommand addtoout = new OleDbCommand();
             addtoout.Connection = conn;
-            addtoout.CommandText = "INSERT into tb_Out(OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPriceTotal, OutPerson, OutStorage, OutAdmin) SELECT OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPriceTotal, OutPerson, OutStorage, OutAdmin FROM tb_tempOut";
+            addtoout.CommandText = "INSERT into tb_Out(OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPriceTotal, OutPerson, OutStorage, OutAdmin, OutComp) SELECT OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPriceTotal, OutPerson, OutStorage, OutAdmin, OutComp FROM tb_tempOut";
             addtoout.ExecuteNonQuery();
+            MessageBox.Show("บันทึกข้อมูลเรียบร้อย");
+
+            printdgv(sender, e);
+
             OleDbCommand deleteTempOut = new OleDbCommand();
             deleteTempOut.Connection = conn;
             deleteTempOut.CommandText = "DELETE * FROM tb_tempOut";
             deleteTempOut.ExecuteNonQuery();
 
             conn.Close();
-            MessageBox.Show("บันทึกข้อมูลเรียบร้อย");
             frm_tempOut_Load(sender, e);
+           
+        }
 
+        private void printdgv(object sender, EventArgs e)
+        {
+            DGVPrinter printer = new DGVPrinter();
+            printer.Title = "ใบเบิกผลิตภัณฑ์"; //Header
+            printer.SubTitle = "REQUISTION FOR MATERIAL / EQUIPMENT";
+            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+            printer.SubTitle = "check";
+            printer.PageNumbers = true;
+            printer.PageNumberInHeader = false;
+            printer.PorportionalColumns = true;
+            printer.HeaderCellAlignment = StringAlignment.Near;
+            printer.Footer = "Thai Meidensha Co.,Ltd.";
+            printer.FooterSpacing = 15;
+            try
+            {
+                printer.PrintDataGridView(dataGridView1);
+            }
+            catch {}
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -197,8 +223,8 @@ namespace db
                 conn.Open();
                 OleDbCommand checkname_bq = new OleDbCommand();
                 checkname_bq.Connection = conn;
-                checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'";
-                //checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo = '" + textBox5.Text + "'";
+                //checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'";
+                checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo = '" + textBox5.Text + "'";
 
                 OleDbDataReader readerCheckNameBQ = checkname_bq.ExecuteReader();
                 while (readerCheckNameBQ.Read())
@@ -214,8 +240,8 @@ namespace db
             if (count == 1)
             {
                 DataSet ds = new DataSet();
-                OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'", conn);
-                //OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo = '" + textBox5.Text + "'", conn);
+                //OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'", conn);
+                OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo = '" + textBox5.Text + "'", conn);
 
                 da.Fill(ds, "Inv_no");
                 string text_no = " ";
@@ -278,16 +304,18 @@ namespace db
                         if (count == 1)
                         {
                             DataSet ds = new DataSet();
-                            OleDbDataAdapter da = new OleDbDataAdapter("SELECT CustFirstName, CustLastName FROM tb_Customer WHERE CustNo = '" + textBox4.Text + "'", conn);
+                            OleDbDataAdapter da = new OleDbDataAdapter("SELECT CustFirstName, CustLastName, CustComp FROM tb_Customer WHERE CustNo = '" + textBox4.Text + "'", conn);
                             da.Fill(ds, "FirstNameAndLastName");
-                            string Cust_Name = "";
+                            string Cust_Name = "", Cust_Comp = "";
                             foreach (DataRow dr in ds.Tables["FirstNameAndLastName"].Rows)
                             {
                                 Cust_Name = dr.ItemArray[0] + " ";
                                 Cust_Name += dr.ItemArray[1] + "";
+                                Cust_Comp = dr.ItemArray[2] + "";
                                 break;
                             }
                             textBox4.Text = Cust_Name;
+                            textBox8.Text = Cust_Comp;
                             break;
                         }
                     }

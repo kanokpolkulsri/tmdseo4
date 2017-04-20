@@ -31,3 +31,4 @@ C:\thaimaidensha\dbstock\db\obj\Debug\db.csproj.GenerateResource.Cache
 C:\thaimaidensha\dbstock\db\obj\Debug\db.frm_login.resources
 C:\thaimaidensha\dbstock\db\obj\Debug\db.frm_admin.resources
 C:\thaimaidensha\dbstock\db\obj\Debug\db.frm_Customer.resources
+C:\thaimaidensha\dbstock\db\bin\Debug\DGV Printer.dll
