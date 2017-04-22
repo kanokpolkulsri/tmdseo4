@@ -70,12 +70,12 @@ namespace db
         
         private void printDoc_PrintPage(object sender, PrintPageEventArgs e)
         {
-            
+            /*
             //print header
             e.Graphics.DrawString("Header Report Title", new Font("Arial", 20), Brushes.Black, 10, 10);
             e.Graphics.DrawLine(Pens.Gray, 10, 50, 830, 50);
             
-            /*
+            
             //print content
             int position = 130;
             e.Graphics.DrawString("- - data from datagrid view --", new Font("Arial", 16), Brushes.Black, 10, 100);
@@ -84,11 +84,11 @@ namespace db
                 e.Graphics.DrawString((string)item.Cells[1].Value, new Font("Arial", 10), Brushes.Black, 10, position);
                 position += 20;
             } */
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
-        { 
+        {
             /*
             PrintDocument printDoc = new PrintDocument();
             printDoc.DocumentName = "Test Document";
@@ -105,10 +105,11 @@ namespace db
             }
             */
 
+            
             DGVPrinter printer = new DGVPrinter();
 
             printer.Title = "Customer Report"; //Header
-            printer.SubTitle = "Your Subtitle";
+            printer.SubTitle = "subtitle"; 
             printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
             printer.PageNumbers = true;
             printer.PageNumberInHeader = false;
@@ -121,6 +122,7 @@ namespace db
                 printer.PrintDataGridView(dataGridView1);
             }
             catch { }
+            
             
         }
 

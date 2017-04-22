@@ -23,17 +23,24 @@ namespace db
             InitializeComponent();
             textBox7.Text = Admin_Name;
             this.WindowState = FormWindowState.Maximized;
+            dataGridView2.Columns[0].HeaderText = "เลขที่\nItem";
+            dataGridView2.Columns[1].HeaderText = "รหัสสินค้า\nCode No.";
+            dataGridView2.Columns[2].HeaderText = "รายการสินค้าและขนาดสินค้า\nDescription";
+            dataGridView2.Columns[3].HeaderText = "จำนวน\nQuantity";
+            dataGridView2.Columns[4].HeaderText = "หน่วยนับ\nUnit";
+            dataGridView2.Columns[5].HeaderText = "หมายเหตุ\nRemark";
+
         }
 
         private void frm_tempOut_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'databaseDataSet.tb_tempOut' table. You can move, or remove it, as needed.
-            this.tb_tempOutTableAdapter.Fill(this.databaseDataSet.tb_tempOut);
-            //oda = new OleDbDataAdapter("SELECT ID, OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPriceTotal, OutPerson, OutStorage, OutAdmin FROM tb_tempOut", conn);
-            oda = new OleDbDataAdapter("SELECT ID, OutNo, OutName, OutAmount, OutUnit FROM tb_tempOut", conn);
+            // TODO: This line of code loads data into the 'databaseDataSet1.tb_tempOut' table. You can move, or remove it, as needed.
+            this.tb_tempOutTableAdapter.Fill(this.databaseDataSet1.tb_tempOut);
+            oda = new OleDbDataAdapter("SELECT Item, ID, OutNo, OutName, OutAmount, OutUnit FROM tb_tempOut", conn);
             dt = new DataTable();
             oda.Fill(dt);
             dataGridView1.DataSource = dt;
+            dataGridView2.DataSource = dt;
             textBox1.Text = DateTime.Now.ToString("dd/MM/yyyy");
             ActiveControl = textBox5;
             textBox8.ReadOnly = true;
@@ -128,13 +135,24 @@ namespace db
                 }
                 else
                 {
+                    DataSet ds3 = new DataSet();
+                    OleDbDataAdapter da3 = new OleDbDataAdapter("SELECT COUNT(*) FROM tb_tempOut", conn);
+                    da3.Fill(ds3, "count_Item");
+                    string countItem = " ";
+                    int Item = 0;
+                    foreach (DataRow dr in ds3.Tables["count_Item"].Rows)
+                    {
+                        countItem = dr.ItemArray[0] + "";
+                        countItem = Convert.ToString(int.Parse(countItem) + 1);
+                        break;
+                    }
                     int amount_program, amount_db, checkamount = 0;
                     if (int.TryParse(text_Amount, out amount_db) && int.TryParse(textBox3.Text, out amount_program) && textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "" && textBox7.Text != "")
                     {
                         checkamount = amount_db - amount_program;
                         if (checkamount >= 0 && text_invname != "" && text_recunit != "" && text_priceunit != "" && text_Amount != "" && text_storage != "")
                         {
-                            addinv.CommandText = "INSERT into tb_tempOut (OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPerson, OutStorage, OutAdmin, OutComp) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "', '" + text_invname + "', '" + textBox3.Text + "','" + text_recunit + "','" + text_priceunit + "','" + textBox4.Text + "','" + text_storage + "','" + textBox7.Text + "','" + textBox8.Text + "')";
+                            addinv.CommandText = "INSERT into tb_tempOut (Item, OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPerson, OutStorage, OutAdmin, OutComp) VALUES ('" + countItem + "', '" + textBox1.Text + "','" + textBox2.Text + "', '" + text_invname + "', '" + textBox3.Text + "','" + text_recunit + "','" + text_priceunit + "','" + textBox4.Text + "','" + text_storage + "','" + textBox7.Text + "','" + textBox8.Text + "')";
                             addinv.ExecuteNonQuery();
                             textBox1.Clear();
                             textBox2.Clear();
@@ -197,20 +215,41 @@ namespace db
 
         private void printdgv(object sender, EventArgs e)
         {
+            string ProjName = " ", ProjWBS = " ";
+            try
+            {
+
+                DataSet ds = new DataSet();
+                OleDbDataAdapter da = new OleDbDataAdapter("SELECT ProjName, ProjWBS FROM tb_Project", conn);
+                da.Fill(ds, "Inv_no");
+                foreach (DataRow dr in ds.Tables["Inv_no"].Rows)
+                {
+                    ProjName = dr.ItemArray[0] + "";
+                    ProjWBS = dr.ItemArray[1] + "";
+                    break;
+                }
+            }
+            catch
+            { }
+
             DGVPrinter printer = new DGVPrinter();
-            printer.Title = "ใบเบิกผลิตภัณฑ์"; //Header
-            printer.SubTitle = "REQUISTION FOR MATERIAL / EQUIPMENT";
+            printer.DocName = "ใบเบิกผลิตภัณฑ์";
+            printer.Title = "ใบเบิกผลิตภัณฑ์ \n REQUISTION FOR MATERIAL / EQUIPMENT\n";
+            printer.SubTitle = "\nหน่วยงานเลขที่ (WBS NO.) : "+ProjWBS+"      ชื่อหน่วยงาน (Project Name) : "+ProjName+" \nวันที่ขอเบิก (Requistion Date) : 09/09/1999        บริษัทที่ขอเบิก : "+textBox8.Text+"\nผู้อนุมัติเบิก (Approved By) : "+textBox7.Text+"\nผู้ขอเบิก (Requisted By) : "+textBox4.Text+"";
             printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-            printer.SubTitle = "check";
+            printer.SubTitleAlignment = StringAlignment.Near;
+            printer.SubTitleFont = new Font("Arial", 10, FontStyle.Regular);
             printer.PageNumbers = true;
             printer.PageNumberInHeader = false;
             printer.PorportionalColumns = true;
+            printer.PageText = "";
+            printer.SubTitleSpacing = 10;
             printer.HeaderCellAlignment = StringAlignment.Near;
             printer.Footer = "Thai Meidensha Co.,Ltd.";
             printer.FooterSpacing = 15;
             try
             {
-                printer.PrintDataGridView(dataGridView1);
+                printer.PrintDataGridView(dataGridView2);
             }
             catch {}
         }
