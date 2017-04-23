@@ -41,6 +41,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OutPriceUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OutPriceTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OutAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OutPerson = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OutComp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OutStorage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbtempOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.databaseDataSet1 = new db.databaseDataSet1();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,11 +67,6 @@
             this.tb_tempOutTableAdapter = new db.databaseDataSet1TableAdapters.tb_tempOutTableAdapter();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.tbtempOutBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,7 +83,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button2.Location = new System.Drawing.Point(133, 493);
+            this.button2.Location = new System.Drawing.Point(243, 488);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(419, 32);
             this.button2.TabIndex = 8;
@@ -177,17 +184,114 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
+            this.OutDate,
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
+            this.dataGridViewTextBoxColumn4,
+            this.OutPriceUnit,
+            this.OutPriceTotal,
+            this.OutAdmin,
+            this.OutPerson,
+            this.OutComp,
+            this.OutStorage});
             this.dataGridView1.DataSource = this.tbtempOutBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(133, 158);
+            this.dataGridView1.Location = new System.Drawing.Point(36, 151);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 5;
-            this.dataGridView1.Size = new System.Drawing.Size(576, 318);
+            this.dataGridView1.Size = new System.Drawing.Size(1113, 318);
             this.dataGridView1.TabIndex = 15;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "ID";
+            this.Column1.HeaderText = "ID";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 50;
+            // 
+            // OutDate
+            // 
+            this.OutDate.DataPropertyName = "OutDate";
+            this.OutDate.HeaderText = "วันที่";
+            this.OutDate.Name = "OutDate";
+            this.OutDate.ReadOnly = true;
+            this.OutDate.Width = 70;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "OutNo";
+            this.dataGridViewTextBoxColumn8.HeaderText = "รหัสสินค้า";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "OutName";
+            this.dataGridViewTextBoxColumn9.HeaderText = "ชื่อสินค้า";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "OutAmount";
+            this.dataGridViewTextBoxColumn3.HeaderText = "จำนวน";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "OutUnit";
+            this.dataGridViewTextBoxColumn4.HeaderText = "หน่วยนับ";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 80;
+            // 
+            // OutPriceUnit
+            // 
+            this.OutPriceUnit.DataPropertyName = "OutPriceUnit";
+            this.OutPriceUnit.HeaderText = "ราคาต่อหน่วย";
+            this.OutPriceUnit.Name = "OutPriceUnit";
+            this.OutPriceUnit.ReadOnly = true;
+            // 
+            // OutPriceTotal
+            // 
+            this.OutPriceTotal.DataPropertyName = "OutPriceTotal";
+            this.OutPriceTotal.HeaderText = "ราคารวม";
+            this.OutPriceTotal.Name = "OutPriceTotal";
+            this.OutPriceTotal.ReadOnly = true;
+            this.OutPriceTotal.Width = 80;
+            // 
+            // OutAdmin
+            // 
+            this.OutAdmin.DataPropertyName = "OutAdmin";
+            this.OutAdmin.HeaderText = "ผู้ดูแลระบบ";
+            this.OutAdmin.Name = "OutAdmin";
+            this.OutAdmin.ReadOnly = true;
+            // 
+            // OutPerson
+            // 
+            this.OutPerson.DataPropertyName = "OutPerson";
+            this.OutPerson.HeaderText = "ชื่อผู้เบิก";
+            this.OutPerson.Name = "OutPerson";
+            this.OutPerson.ReadOnly = true;
+            // 
+            // OutComp
+            // 
+            this.OutComp.DataPropertyName = "OutComp";
+            this.OutComp.HeaderText = "บริษัทผู้เบิก";
+            this.OutComp.Name = "OutComp";
+            this.OutComp.ReadOnly = true;
+            // 
+            // OutStorage
+            // 
+            this.OutStorage.DataPropertyName = "OutStorage";
+            this.OutStorage.HeaderText = "ที่เก็บสินค้า";
+            this.OutStorage.Name = "OutStorage";
+            this.OutStorage.ReadOnly = true;
             // 
             // tbtempOutBindingSource
             // 
@@ -220,7 +324,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(665, 498);
+            this.button3.Location = new System.Drawing.Point(1105, 493);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(44, 23);
             this.button3.TabIndex = 10;
@@ -232,7 +336,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label6.Location = new System.Drawing.Point(574, 501);
+            this.label6.Location = new System.Drawing.Point(1014, 496);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(21, 17);
             this.label6.TabIndex = 31;
@@ -240,7 +344,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(601, 500);
+            this.textBox6.Location = new System.Drawing.Point(1041, 495);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(58, 20);
             this.textBox6.TabIndex = 9;
@@ -307,7 +411,7 @@
             this.dataGridViewTextBoxColumn6,
             this.Column2});
             this.dataGridView2.DataSource = this.tbtempOutBindingSource1;
-            this.dataGridView2.Location = new System.Drawing.Point(558, 504);
+            this.dataGridView2.Location = new System.Drawing.Point(998, 499);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(5);
@@ -320,51 +424,13 @@
             this.tbtempOutBindingSource1.DataMember = "tb_tempOut";
             this.tbtempOutBindingSource1.DataSource = this.databaseDataSet1;
             // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "ID";
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "OutNo";
-            this.dataGridViewTextBoxColumn8.HeaderText = "รหัสสินค้า";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "OutName";
-            this.dataGridViewTextBoxColumn9.HeaderText = "ชื่อสินค้า";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "OutAmount";
-            this.dataGridViewTextBoxColumn3.HeaderText = "จำนวน";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "OutUnit";
-            this.dataGridViewTextBoxColumn4.HeaderText = "หน่วยนับ";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
             // itemDataGridViewTextBoxColumn1
             // 
             this.itemDataGridViewTextBoxColumn1.DataPropertyName = "Item";
             this.itemDataGridViewTextBoxColumn1.HeaderText = "Item";
             this.itemDataGridViewTextBoxColumn1.Name = "itemDataGridViewTextBoxColumn1";
             this.itemDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.itemDataGridViewTextBoxColumn1.Width = 50;
+            this.itemDataGridViewTextBoxColumn1.Width = 30;
             // 
             // dataGridViewTextBoxColumn12
             // 
@@ -372,7 +438,7 @@
             this.dataGridViewTextBoxColumn12.HeaderText = "OutNo";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            this.dataGridViewTextBoxColumn12.Width = 80;
+            this.dataGridViewTextBoxColumn12.Width = 70;
             // 
             // dataGridViewTextBoxColumn13
             // 
@@ -380,7 +446,6 @@
             this.dataGridViewTextBoxColumn13.HeaderText = "OutName";
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
             this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            this.dataGridViewTextBoxColumn13.Width = 130;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -388,7 +453,7 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "OutAmount";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 70;
+            this.dataGridViewTextBoxColumn5.Width = 50;
             // 
             // dataGridViewTextBoxColumn6
             // 
@@ -396,14 +461,13 @@
             this.dataGridViewTextBoxColumn6.HeaderText = "OutUnit";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 70;
+            this.dataGridViewTextBoxColumn6.Width = 50;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Column2";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
-            this.Column2.Width = 150;
             // 
             // frm_tempOut
             // 
@@ -483,10 +547,17 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.BindingSource tbtempOutBindingSource1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OutDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OutPriceUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OutPriceTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OutAdmin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OutPerson;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OutComp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OutStorage;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;

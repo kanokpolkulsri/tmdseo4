@@ -34,6 +34,7 @@ namespace db
             textBox3.Text = "0";
             textBox5.Text = "0";
             ActiveControl = textBox1;
+            textBox3.ReadOnly = true;
         }
 
         private void textBox8_TextChanged(object sender, EventArgs e)

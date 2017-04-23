@@ -33,6 +33,13 @@ namespace db
             dataGridView1.DataSource = dt;
             dataGridView1.Columns[2].Width = 150;
             dataGridView1.Columns[8].Width = 150;
+
+            OleDbDataAdapter oda2;
+            DataTable dt2;
+            oda2 = new OleDbDataAdapter("SELECT * FROM tb_Material", conn);
+            dt2 = new DataTable();
+            oda2.Fill(dt2);
+            dataGridView2.DataSource = dt2;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

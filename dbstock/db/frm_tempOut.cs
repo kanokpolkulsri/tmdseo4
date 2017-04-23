@@ -36,7 +36,7 @@ namespace db
         {
             // TODO: This line of code loads data into the 'databaseDataSet1.tb_tempOut' table. You can move, or remove it, as needed.
             this.tb_tempOutTableAdapter.Fill(this.databaseDataSet1.tb_tempOut);
-            oda = new OleDbDataAdapter("SELECT Item, ID, OutNo, OutName, OutAmount, OutUnit FROM tb_tempOut", conn);
+            oda = new OleDbDataAdapter("SELECT * FROM tb_tempOut", conn);
             dt = new DataTable();
             oda.Fill(dt);
             dataGridView1.DataSource = dt;
@@ -83,7 +83,7 @@ namespace db
                 //หาว่าใน tempOut มีสินค้าชนิดนี้อยู่ไหม
                 OleDbCommand checkInTempOut = new OleDbCommand();
                 checkInTempOut.Connection = conn;
-                checkInTempOut.CommandText = "SELECT * FROM tb_tempOut WHERE OutNo = '" + textBox2.Text + "' AND OutPerson = '" + textBox7.Text + "'";
+                checkInTempOut.CommandText = "SELECT * FROM tb_tempOut WHERE OutNo = '" + textBox2.Text + "' AND OutAdmin = '" + textBox7.Text + "' AND OutPerson = '"+textBox4.Text+"' ";
                 OleDbDataReader readerCheckInTempOut = checkInTempOut.ExecuteReader();
                 int count2 = 0;
                 while (readerCheckInTempOut.Read())
@@ -98,7 +98,7 @@ namespace db
                 if (count2 == 1)
                 {
                     DataSet ds2 = new DataSet();
-                    OleDbDataAdapter da2 = new OleDbDataAdapter("SELECT OutAmount FROM tb_tempOut WHERE OutNo = '" + textBox2.Text + "'", conn);
+                    OleDbDataAdapter da2 = new OleDbDataAdapter("SELECT OutAmount FROM tb_tempOut WHERE OutNo = '" + textBox2.Text + "' AND OutAdmin = '"+textBox7.Text+"' AND OutPerson = '"+textBox4.Text+"'", conn);
                     da2.Fill(ds2, "Inv_tempOut");
                     string out_amount = "";
                     foreach (DataRow dr in ds2.Tables["Inv_tempOut"].Rows)
@@ -115,7 +115,7 @@ namespace db
                             checkamount = amount_db - (amount_program + out_amount_tempOut);
                             if (checkamount >= 0 && text_invname != "" && text_recunit != "" && text_priceunit != "" && text_Amount != "" && text_storage != "")
                             {
-                                addinv.CommandText = "UPDATE tb_tempOut SET OutAmount = OutAmount + '" + amount_program + "' WHERE OutNo = '" + textBox2.Text + "' AND OutPerson = '" + textBox7.Text + "'";
+                                addinv.CommandText = "UPDATE tb_tempOut SET OutAmount = OutAmount + '" + amount_program + "' WHERE OutNo = '" + textBox2.Text + "' AND OutAdmin = '"+textBox7.Text+"' AND OutPerson = '" + textBox4.Text + "'";
                                 addinv.ExecuteNonQuery();
                                 textBox1.Clear();
                                 textBox2.Clear();
@@ -203,11 +203,11 @@ namespace db
 
             printdgv(sender, e);
 
-            OleDbCommand deleteTempOut = new OleDbCommand();
+            /*OleDbCommand deleteTempOut = new OleDbCommand();
             deleteTempOut.Connection = conn;
             deleteTempOut.CommandText = "DELETE * FROM tb_tempOut";
             deleteTempOut.ExecuteNonQuery();
-
+            */
             conn.Close();
             frm_tempOut_Load(sender, e);
            
@@ -235,18 +235,18 @@ namespace db
             DGVPrinter printer = new DGVPrinter();
             printer.DocName = "ใบเบิกผลิตภัณฑ์";
             printer.Title = "ใบเบิกผลิตภัณฑ์ \n REQUISTION FOR MATERIAL / EQUIPMENT\n";
-            printer.SubTitle = "\nหน่วยงานเลขที่ (WBS NO.) : "+ProjWBS+"      ชื่อหน่วยงาน (Project Name) : "+ProjName+" \nวันที่ขอเบิก (Requistion Date) : 09/09/1999        บริษัทที่ขอเบิก : "+textBox8.Text+"\nผู้อนุมัติเบิก (Approved By) : "+textBox7.Text+"\nผู้ขอเบิก (Requisted By) : "+textBox4.Text+"";
+            printer.TitleFont = new Font("Arial", 15, FontStyle.Regular);
+            printer.SubTitle = "\nหน่วยงานเลขที่ (WBS NO.) : "+ProjWBS+"      ชื่อหน่วยงาน (Project Name) : "+ProjName+" \nวันที่ขอเบิก (Requistion Date) : 09/09/1999         บริษัทที่ขอเบิก : "+textBox8.Text+"\nผู้อนุมัติเบิก (Approved By) : "+textBox7.Text+"\nผู้ขอเบิก (Requisted By) : "+textBox4.Text+"";
             printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
             printer.SubTitleAlignment = StringAlignment.Near;
             printer.SubTitleFont = new Font("Arial", 10, FontStyle.Regular);
-            printer.PageNumbers = true;
+            printer.PageNumbers = false;
             printer.PageNumberInHeader = false;
             printer.PorportionalColumns = true;
             printer.PageText = "";
-            printer.SubTitleSpacing = 10;
+            printer.Footer = "Thai meidensha Co.,Ltd.";
+            printer.SubTitleSpacing = 6;
             printer.HeaderCellAlignment = StringAlignment.Near;
-            printer.Footer = "Thai Meidensha Co.,Ltd.";
-            printer.FooterSpacing = 15;
             try
             {
                 printer.PrintDataGridView(dataGridView2);
