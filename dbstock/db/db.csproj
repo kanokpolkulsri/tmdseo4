@@ -99,6 +99,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>databaseDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="databaseDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>databaseDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="databaseDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>databaseDataSet3.xsd</DependentUpon>
+    </Compile>
     <Compile Include="forTempOut.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -218,6 +228,28 @@
     </None>
     <None Include="databaseDataSet1.xss">
       <DependentUpon>databaseDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="databaseDataSet2.xsc">
+      <DependentUpon>databaseDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="databaseDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>databaseDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="databaseDataSet2.xss">
+      <DependentUpon>databaseDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="databaseDataSet3.xsc">
+      <DependentUpon>databaseDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="databaseDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>databaseDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="databaseDataSet3.xss">
+      <DependentUpon>databaseDataSet3.xsd</DependentUpon>
     </None>
     <None Include="forTempOut.xsc">
       <DependentUpon>forTempOut.xsd</DependentUpon>

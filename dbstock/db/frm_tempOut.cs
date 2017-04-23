@@ -41,7 +41,7 @@ namespace db
             oda.Fill(dt);
             dataGridView1.DataSource = dt;
             dataGridView2.DataSource = dt;
-            textBox1.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            textBox1.Text = DateTime.Now.ToString("MM/dd/yyyy");
             ActiveControl = textBox5;
             textBox8.ReadOnly = true;
         }
@@ -177,8 +177,36 @@ namespace db
             frm_tempOut_Load(sender, e);
         }
 
+        private void updateMtrByTempOut()
+        {
+            OleDbCommand updateOutInMat = new OleDbCommand();
+            updateOutInMat.Connection = conn;
+            conn.Open();
+            DataSet ds = new DataSet();
+            OleDbDataAdapter da = new OleDbDataAdapter("SELECT OutNo, OutAmount FROM tb_tempOut", conn);
+            da.Fill(ds, "All_No_tempOut");
+            string text_outNo = " ", text_outAmount = " ";
+            int num_Out_Amount = 0;
+            foreach (DataRow dr in ds.Tables["All_No_TempOut"].Rows)
+            {
+                text_outNo = dr.ItemArray[0] + "";
+                text_outAmount = dr.ItemArray[1] + "";
+                Console.WriteLine("{0} {1}", text_outNo, text_outAmount);
+                if (int.TryParse(text_outAmount, out num_Out_Amount))
+                {
+                    Console.WriteLine(num_Out_Amount);
+                    updateOutInMat.CommandText = "UPDATE tb_Material SET MtrUsed = MtrUsed + '" + num_Out_Amount + "' WHERE MtrNo = '" + text_outNo + "' AND MtrDate = '" + textBox1.Text + "'";
+                    updateOutInMat.ExecuteNonQuery();
+                }
+            }
+            conn.Close();
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
+
+            updateMtrByTempOut();
+
             DataSet ds = new DataSet();
             OleDbDataAdapter da = new OleDbDataAdapter("SELECT OutNo, OutAmount FROM tb_tempOut", conn);
             da.Fill(ds, "Inv_no");
@@ -203,11 +231,11 @@ namespace db
 
             printdgv(sender, e);
 
-            /*OleDbCommand deleteTempOut = new OleDbCommand();
+            OleDbCommand deleteTempOut = new OleDbCommand();
             deleteTempOut.Connection = conn;
             deleteTempOut.CommandText = "DELETE * FROM tb_tempOut";
             deleteTempOut.ExecuteNonQuery();
-            */
+            
             conn.Close();
             frm_tempOut_Load(sender, e);
            
@@ -218,7 +246,6 @@ namespace db
             string ProjName = " ", ProjWBS = " ";
             try
             {
-
                 DataSet ds = new DataSet();
                 OleDbDataAdapter da = new OleDbDataAdapter("SELECT ProjName, ProjWBS FROM tb_Project", conn);
                 da.Fill(ds, "Inv_no");
@@ -236,7 +263,7 @@ namespace db
             printer.DocName = "ใบเบิกผลิตภัณฑ์";
             printer.Title = "ใบเบิกผลิตภัณฑ์ \n REQUISTION FOR MATERIAL / EQUIPMENT\n";
             printer.TitleFont = new Font("Arial", 15, FontStyle.Regular);
-            printer.SubTitle = "\nหน่วยงานเลขที่ (WBS NO.) : "+ProjWBS+"      ชื่อหน่วยงาน (Project Name) : "+ProjName+" \nวันที่ขอเบิก (Requistion Date) : 09/09/1999         บริษัทที่ขอเบิก : "+textBox8.Text+"\nผู้อนุมัติเบิก (Approved By) : "+textBox7.Text+"\nผู้ขอเบิก (Requisted By) : "+textBox4.Text+"";
+            printer.SubTitle = "\nหน่วยงานเลขที่ (WBS NO.) : "+ProjWBS+"      ชื่อหน่วยงาน (Project Name) : "+ProjName+" \nวันที่ขอเบิก (Requistion Date) : "+textBox1.Text+"         บริษัทที่ขอเบิก : "+textBox8.Text+"\nผู้อนุมัติเบิก (Approved By) : "+textBox7.Text+"\nผู้ขอเบิก (Requisted By) : "+textBox4.Text+"";
             printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
             printer.SubTitleAlignment = StringAlignment.Near;
             printer.SubTitleFont = new Font("Arial", 10, FontStyle.Regular);
@@ -262,7 +289,6 @@ namespace db
                 conn.Open();
                 OleDbCommand checkname_bq = new OleDbCommand();
                 checkname_bq.Connection = conn;
-                //checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'";
                 checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo = '" + textBox5.Text + "'";
 
                 OleDbDataReader readerCheckNameBQ = checkname_bq.ExecuteReader();
@@ -279,7 +305,6 @@ namespace db
             if (count == 1)
             {
                 DataSet ds = new DataSet();
-                //OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo LIKE '" + textBox5.Text + "%'", conn);
                 OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo FROM tb_Inv WHERE InvNo = '" + textBox5.Text + "'", conn);
 
                 da.Fill(ds, "Inv_no");

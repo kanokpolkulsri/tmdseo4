@@ -31,7 +31,7 @@ namespace db
             dt = new DataTable();
             oda.Fill(dt);
             dataGridView1.DataSource = dt;
-            textBox1.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            textBox1.Text = DateTime.Now.ToString("MM/dd/yyyy");
             ActiveControl = textBox5;
         }
 
@@ -131,64 +131,19 @@ namespace db
             frm_tempRec_Load(sender, e);
         }
 
-        private void addToMaterial()
-        {
-            conn.Open();
-            DataSet ds = new DataSet();
-            OleDbDataAdapter da = new OleDbDataAdapter("SELECT RecNo, RecAmount, RecName, RecUnit FROM tb_tempRec", conn);
-            da.Fill(ds, "All_No_tempRec");
-            string text_recNo = " ", text_Rec_Amount = " ", text_recName = " ", text_recUnit = " ";
-            int num_recNo = 0, num_Rec_Amount = 0;
-            foreach (DataRow dr in ds.Tables["All_No_TempRec"].Rows)
-            {
-                text_recNo = dr.ItemArray[0] + "";
-                text_Rec_Amount = dr.ItemArray[1] + "";
-                text_recName = dr.ItemArray[2] + "";
-                text_recUnit = dr.ItemArray[3] + "";
-                if (int.TryParse(text_recNo, out num_recNo) && int.TryParse(text_Rec_Amount, out num_Rec_Amount))
-                {
-                    //จะเช็คว่าใน material มีรหัสพวกนี้หรือยัง
-                    OleDbCommand checkInMat = new OleDbCommand();
-                    checkInMat.Connection = conn;
-                    checkInMat.CommandText = "SELECT * FROM tb_Material WHERE MatNo = '" + num_recNo + "' AND MatDate = '" + textBox1.Text + "'";
-                    OleDbDataReader readerCheckInMat = checkInMat.ExecuteReader();
-                    int count2 = 0;
-                    while (readerCheckInMat.Read())
-                    {
-                        count2 = count2 + 1;
-                        if (count2 == 1)
-                        {
-                            break;
-                        }
-                    }
-                    //พบว่ามีใน material คราวนี้จะอัพเดตค่าจำนวนที่รับเข้ามาใหม่
-                    if (count2 == 1)
-                    {
-                        OleDbCommand updateRecInMat = new OleDbCommand();
-                        updateRecInMat.Connection = conn;
-                        updateRecInMat.CommandText = "UPDATE tb_Material SET MatCurrent = MatCurrent + '" + num_Rec_Amount + "' WHERE MatNo = '" + num_recNo + "' AND MatDate = '" + textBox1.Text + "'";
-                        updateRecInMat.ExecuteNonQuery();
-                    }
-                    else // ยังไม่เคยมีการบันทึกเข้าใน material
-                    {
-                        OleDbCommand insertRecInMat = new OleDbCommand();
-                        insertRecInMat.Connection = conn;
-                        insertRecInMat.CommandText = "INSERT into tb_Material(MatDate, MatNo, MatName, MatUnit, MatCurrent, MatBrought, MatUsed) VALUES ('"+textBox1.Text+"', '"+num_recNo+"', '"+text_recName+"', '"+text_recUnit+"', '"+num_Rec_Amount+"', '0', '0')";
-                        insertRecInMat.ExecuteNonQuery();
-                    }
-                }
-            }
-            conn.Close();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void updateMtrByTempRec()
         {
             conn.Open();
             DataSet ds = new DataSet();
             OleDbDataAdapter da = new OleDbDataAdapter("SELECT RecNo, RecAmount, RecName, RecUnit, RecDate FROM tb_tempRec", conn);
             da.Fill(ds, "All_No_tempRec");
             string num_recNo = " ", text_Rec_Amount = " ", text_recName = " ", text_recUnit = " ", text_recDate = " ";
+            string amountInInv = " ";
             int num_Rec_Amount = 0;
+            OleDbCommand checkInMat = new OleDbCommand();
+            checkInMat.Connection = conn;
+            int count2 = 0;
+            conn.Close();
             foreach (DataRow dr in ds.Tables["All_No_TempRec"].Rows)
             {
                 num_recNo = dr.ItemArray[0] + "";
@@ -196,61 +151,58 @@ namespace db
                 text_recName = dr.ItemArray[2] + "";
                 text_recUnit = dr.ItemArray[3] + "";
                 text_recDate = dr.ItemArray[4] + "";
-                Console.WriteLine("{0} - {1} - {2} - {3}", num_recNo, text_Rec_Amount, text_recName, text_recUnit);
+                //Console.WriteLine("{0} - {1} - {2} - {3} - {4}", num_recNo, text_Rec_Amount, text_recName, text_recUnit, text_recDate);
                 if (int.TryParse(text_Rec_Amount, out num_Rec_Amount))
                 {
                     //จะเช็คว่าใน material มีรหัสพวกนี้หรือยัง
-                    int count2 = 0;
-                    try
+                    conn.Open();
+                    checkInMat.CommandText = "SELECT * FROM tb_Material WHERE MtrNo = '" + num_recNo + "' AND MtrDate = '" + textBox1.Text + "'";
+                    OleDbDataReader readerCheckInMat = checkInMat.ExecuteReader();
+                    //int count2 = 0;
+                    while (readerCheckInMat.Read())
                     {
-                        OleDbCommand checkInMat = new OleDbCommand();
-                        checkInMat.Connection = conn;
-                        checkInMat.CommandText = "SELECT * FROM tb_Material WHERE MatNo = '" + num_recNo + "' AND MatDate = '" + textBox1.Text + "'";
-                        //checkInMat.CommandText = "SELECT COUNT(*) FROM tb_Material WHERE MatDate = '"+text_recDate+"'";
-                        OleDbDataReader readerCheckInMat = checkInMat.ExecuteReader();
-                        //int count2 = 0;
-                        while (readerCheckInMat.Read())
+                        count2 = count2 + 1;
+                        Console.WriteLine(count2);
+                        if (count2 == 1)
                         {
-                            count2 = count2 + 1;
-                            Console.WriteLine();
-                            if (count2 == 1)
-                            {
-                                break;
-                            }
+                            break;
                         }
                     }
-                    catch
-                    { Console.WriteLine("error"); }
-                    Console.WriteLine("tryParse ผ่านนะ");
+                    conn.Close();
+                    conn.Open();
                     //พบว่ามีใน material คราวนี้จะอัพเดตค่าจำนวนที่รับเข้ามาใหม่
-                    /*if (count2 == 1)
+                    if (count2 == 1)
                     {
                         OleDbCommand updateRecInMat = new OleDbCommand();
                         updateRecInMat.Connection = conn;
-                        updateRecInMat.CommandText = "UPDATE tb_Material SET MatCurrent = MatCurrent + '" + num_Rec_Amount + "' WHERE MatNo = '" + num_recNo + "' AND MatDate = '" + textBox1.Text + "'";
+                        updateRecInMat.CommandText = "UPDATE tb_Material SET MtrCurrent = MtrCurrent + '" + num_Rec_Amount + "' WHERE MtrNo = '" + num_recNo + "' AND MtrDate = '" + textBox1.Text + "'";
                         updateRecInMat.ExecuteNonQuery();
-                        Console.WriteLine("count2 == 1");
                     }
-                    
                     else // ยังไม่เคยมีการบันทึกเข้าใน material
-                    {*/
+                    {
+                        DataSet ds2 = new DataSet();
+                        OleDbDataAdapter da2 = new OleDbDataAdapter("SELECT InvAmount FROM tb_Inv WHERE InvNo = '" + num_recNo + "'", conn);
+                        da2.Fill(ds2, "inv_amount");
+                        foreach (DataRow dr2 in ds2.Tables["inv_amount"].Rows)
+                        {
+                            amountInInv = dr2.ItemArray[0] + "";
+                        }
                         OleDbCommand insertRecInMat = new OleDbCommand();
                         insertRecInMat.Connection = conn;
-                        insertRecInMat.CommandText = "INSERT into tb_Material(MatDate, MatNo, MatName, MatUnit, MatCurrent, MatBrought, MatUsed) VALUES ('" + textBox1.Text + "', '" + num_recNo + "', '" + text_recName + "', '" + text_recUnit + "', '" + num_Rec_Amount + "', '0', '0')";
+                        insertRecInMat.CommandText = "INSERT into tb_Material(MtrDate, MtrNo, MtrName, MtrUnit, MtrCurrent, MtrBrought, MtrUsed) VALUES ('" + textBox1.Text + "', '" + num_recNo + "', '" + text_recName + "', '" + text_recUnit + "', '" + num_Rec_Amount + "', '" + amountInInv + "', 0)";
                         insertRecInMat.ExecuteNonQuery();
-                        Console.WriteLine("count2 == 0");
-                    /*
+
                     }
-                    num_recNo = " ";*/
-                    
+                    count2 = 0;
+                    conn.Close();
                 }
-                
+
             }
-            conn.Close();
+        }
 
-            //addToMaterial();
-
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            updateMtrByTempRec();
 
             conn.Open();
 
@@ -275,12 +227,12 @@ namespace db
             addtorec.CommandText = "INSERT into tb_Rec(RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage, RecComp) SELECT RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage, RecComp FROM tb_tempRec";
             addtorec.ExecuteNonQuery();
 
-            /*
+            
             OleDbCommand deleteTempRec = new OleDbCommand();
             deleteTempRec.Connection = conn;
             deleteTempRec.CommandText = "DELETE * FROM tb_tempRec";
             deleteTempRec.ExecuteNonQuery();
-            */
+            
 
             conn.Close();
             MessageBox.Show("บันทึกข้อมูลเรียบร้อย");
