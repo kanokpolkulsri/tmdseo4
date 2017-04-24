@@ -67,6 +67,7 @@
             this.tbMaterialBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.databaseDataSet2 = new db.databaseDataSet2();
             this.tb_MaterialTableAdapter = new db.databaseDataSet2TableAdapters.tb_MaterialTableAdapter();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbOutBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
@@ -80,7 +81,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textBox2.Location = new System.Drawing.Point(345, 58);
+            this.textBox2.Location = new System.Drawing.Point(370, 58);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(188, 21);
             this.textBox2.TabIndex = 1;
@@ -90,7 +91,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label2.Location = new System.Drawing.Point(286, 61);
+            this.label2.Location = new System.Drawing.Point(311, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 17);
             this.label2.TabIndex = 8;
@@ -99,7 +100,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textBox1.Location = new System.Drawing.Point(129, 58);
+            this.textBox1.Location = new System.Drawing.Point(154, 58);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(139, 21);
             this.textBox1.TabIndex = 0;
@@ -109,7 +110,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(62, 61);
+            this.label1.Location = new System.Drawing.Point(87, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 17);
             this.label1.TabIndex = 6;
@@ -142,7 +143,7 @@
             this.outCompDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn7});
             this.dataGridView1.DataSource = this.tbOutBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(49, 97);
+            this.dataGridView1.Location = new System.Drawing.Point(74, 97);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 5;
@@ -259,7 +260,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1061, 59);
+            this.button1.Location = new System.Drawing.Point(1086, 59);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 23);
             this.button1.TabIndex = 11;
@@ -270,7 +271,7 @@
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textBox3.Location = new System.Drawing.Point(898, 59);
+            this.textBox3.Location = new System.Drawing.Point(923, 59);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(157, 21);
             this.textBox3.TabIndex = 9;
@@ -279,7 +280,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label3.Location = new System.Drawing.Point(831, 61);
+            this.label3.Location = new System.Drawing.Point(856, 61);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 17);
             this.label3.TabIndex = 10;
@@ -309,7 +310,7 @@
             this.mtrUsedDataGridViewTextBoxColumn,
             this.mtrBalDataGridViewTextBoxColumn});
             this.dataGridView2.DataSource = this.tbMaterialBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(49, 67);
+            this.dataGridView2.Location = new System.Drawing.Point(74, 67);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(5);
@@ -386,11 +387,22 @@
             // 
             this.tb_MaterialTableAdapter.ClearBeforeFill = true;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label8.Location = new System.Drawing.Point(71, 27);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(96, 17);
+            this.label8.TabIndex = 33;
+            this.label8.Text = "ประวัติการเบิก";
+            // 
             // frm_Out
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 493);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox3);
@@ -463,5 +475,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn mtrTotalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mtrUsedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mtrBalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label8;
     }
 }

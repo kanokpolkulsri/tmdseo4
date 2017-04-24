@@ -39,16 +39,37 @@ namespace db
             if (textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "" && textBox5.Text != "")
             {
                 conn.Open();
-                OleDbCommand addData = new OleDbCommand();
-                addData.Connection = conn;
-                addData.CommandText = "INSERT into tb_Customer (CustNo, CustFirstName, CustLastName, CustPosition, CustPhoneNo) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" + textBox4.Text + "','" + textBox5.Text + "')";
-                addData.ExecuteNonQuery();
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
-                textBox4.Clear();
-                textBox5.Clear();
-                MessageBox.Show("เพิ่มข้อมูลเรียบร้อย");
+                OleDbCommand checkNoInCust = new OleDbCommand();
+                checkNoInCust.Connection = conn;
+                checkNoInCust.CommandText = "SELECT * FROM tb_Customer WHERE CustNo = '"+textBox1.Text+"'";
+                OleDbDataReader readerCheckNoInCust = checkNoInCust.ExecuteReader();
+                int count2 = 0;
+                while (readerCheckNoInCust.Read())
+                {
+                    count2 = count2 + 1;
+                    if (count2 == 1)
+                    {
+                        break;
+                    }
+                }
+                if (count2 == 1)
+                {
+                    MessageBox.Show("มีรหัสนี้ภายในระบบแล้ว");
+                }
+                else
+                {
+
+                    OleDbCommand addData = new OleDbCommand();
+                    addData.Connection = conn;
+                    addData.CommandText = "INSERT into tb_Customer (CustNo, CustFirstName, CustLastName, CustComp, CustPhoneNo) VALUES ('" + textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" + textBox4.Text + "','" + textBox5.Text + "')";
+                    addData.ExecuteNonQuery();
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
+                    textBox5.Clear();
+                    MessageBox.Show("เพิ่มข้อมูลเรียบร้อย");
+                }
                 conn.Close();
             }
             else
