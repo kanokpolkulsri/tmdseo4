@@ -38,27 +38,30 @@ namespace db
 
         private void checkProject(object sender, EventArgs e)
         {
-            if (textBox9.Text == "" && textBox10.Text == "")
+            if (textBox9.Text == "" && textBox10.Text == "" && textBox11.Text == "")
             {
                 conn.Open();
                 DataSet ds = new DataSet();
-                OleDbDataAdapter da = new OleDbDataAdapter("SELECT ProjName, ProjWBS FROM tb_Project", conn);
+                OleDbDataAdapter da = new OleDbDataAdapter("SELECT ProjName, ProjWBS, ProjAdmin FROM tb_Project", conn);
                 da.Fill(ds, "data_Proj");
-                string text_name = "", text_wbs = "";
+                string text_name = "", text_wbs = "", text_owner = "";
                 foreach (DataRow dr in ds.Tables["data_Proj"].Rows)
                 {
                     text_name = dr.ItemArray[0] + "";
                     text_wbs = dr.ItemArray[1] + "";
+                    text_owner = dr.ItemArray[2] + "";
                     break;
                 }
                 conn.Close();
-                if (text_name != "" && text_wbs != "")
+                if (text_name != "" && text_wbs != "" && text_owner != "")
                 {
                     textBox10.Text = text_name;
                     textBox9.Text = text_wbs;
+                    textBox11.Text = text_owner;
                     button2.Hide();
                     textBox9.ReadOnly = true;
                     textBox10.ReadOnly = true;
+                    textBox11.ReadOnly = true;
                 }
             }
         }
@@ -144,12 +147,13 @@ namespace db
             conn.Open();
             OleDbCommand command2 = new OleDbCommand();
             command2.Connection = conn;
-            command2.CommandText = "INSERT into tb_Project (ProjName, ProjWBS) VALUES ('" + textBox10.Text + "', '" + textBox9.Text + "')";
+            command2.CommandText = "INSERT into tb_Project (ProjName, ProjWBS, ProjAdmin) VALUES ('" + textBox10.Text + "', '" + textBox9.Text + "', '"+textBox11.Text+"')";
             command2.ExecuteNonQuery();
             conn.Close();
             button2.Hide();
             textBox9.ReadOnly = true;
             textBox10.ReadOnly = true;
+            textBox11.ReadOnly = true;
             MessageBox.Show("ลงทะเบียนโครงการเรียบร้อย");
             frm_admin_Load(sender, e);
         }
