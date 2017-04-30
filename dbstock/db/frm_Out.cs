@@ -27,10 +27,6 @@ namespace db
 
         private void frm_Out_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'databaseDataSet2.tb_Material' table. You can move, or remove it, as needed.
-            this.tb_MaterialTableAdapter.Fill(this.databaseDataSet2.tb_Material);
-            // TODO: This line of code loads data into the 'databaseDataSet.tb_Out' table. You can move, or remove it, as needed.
-            this.tb_OutTableAdapter.Fill(this.databaseDataSet.tb_Out);
             oda = new OleDbDataAdapter("SELECT OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPriceTotal, OutPerson, OutStorage, OutAdmin, OutComp FROM tb_Out", conn);
             dt = new DataTable();
             oda.Fill(dt);

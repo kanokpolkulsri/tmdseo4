@@ -26,10 +26,6 @@ namespace db
 
         private void frm_Rec_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'databaseDataSet2.tb_Material' table. You can move, or remove it, as needed.
-            this.tb_MaterialTableAdapter.Fill(this.databaseDataSet2.tb_Material);
-            // TODO: This line of code loads data into the 'databaseDataSet2.tb_Rec' table. You can move, or remove it, as needed.
-            this.tb_RecTableAdapter.Fill(this.databaseDataSet2.tb_Rec);
             oda = new OleDbDataAdapter("SELECT RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage, RecComp FROM tb_Rec", conn);
             dt = new DataTable();
             oda.Fill(dt);
@@ -161,7 +157,7 @@ namespace db
                     dt = new DataTable();
                     oda.Fill(dt);
                     dataGridView2.DataSource = dt;
-                    printdgv(sender, e, text_name);
+                    //printdgv(sender, e, text_name);
                     textBox3.Clear();
                 }
                 else

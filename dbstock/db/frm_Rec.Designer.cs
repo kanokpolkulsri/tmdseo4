@@ -32,43 +32,30 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.recCompDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbRecBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.databaseDataSet2 = new db.databaseDataSet2();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.tb_RecTableAdapter = new db.databaseDataSet2TableAdapters.tb_RecTableAdapter();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.mtrDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtrNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtrUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtrCurrentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtrBroughtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtrTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtrUsedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mtrBalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbMaterialBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tb_MaterialTableAdapter = new db.databaseDataSet2TableAdapters.tb_MaterialTableAdapter();
             this.label8 = new System.Windows.Forms.Label();
+            this.tbRecBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.recCompDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbRecBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbMaterialBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbRecBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -86,16 +73,17 @@
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn,
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn5,
-            this.recCompDataGridViewTextBoxColumn,
-            this.dataGridViewTextBoxColumn6});
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.recCompDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.tbRecBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(110, 102);
             this.dataGridView1.Name = "dataGridView1";
@@ -103,94 +91,6 @@
             this.dataGridView1.RowHeadersWidth = 5;
             this.dataGridView1.Size = new System.Drawing.Size(1099, 341);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "RecDate";
-            this.dataGridViewTextBoxColumn1.HeaderText = "วันที่";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "RecNo";
-            this.dataGridViewTextBoxColumn8.HeaderText = "รหัสสินค้า";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Width = 110;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "RecName";
-            this.dataGridViewTextBoxColumn7.HeaderText = "ชื่อสินค้า";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "RecAmount";
-            this.dataGridViewTextBoxColumn2.HeaderText = "จำนวน";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "RecUnit";
-            this.dataGridViewTextBoxColumn3.HeaderText = "หน่วย";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "RecPriceUnit";
-            this.dataGridViewTextBoxColumn4.HeaderText = "ราคาต่อหน่วย";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "RecPriceTotal";
-            this.dataGridViewTextBoxColumn9.HeaderText = "ราคารวม";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "RecPerson";
-            this.dataGridViewTextBoxColumn5.HeaderText = "ผู้รับสินค้า";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 120;
-            // 
-            // recCompDataGridViewTextBoxColumn
-            // 
-            this.recCompDataGridViewTextBoxColumn.DataPropertyName = "RecComp";
-            this.recCompDataGridViewTextBoxColumn.HeaderText = "รับจากบริษัท";
-            this.recCompDataGridViewTextBoxColumn.Name = "recCompDataGridViewTextBoxColumn";
-            this.recCompDataGridViewTextBoxColumn.ReadOnly = true;
-            this.recCompDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "RecStorage";
-            this.dataGridViewTextBoxColumn6.HeaderText = "ที่เก็บสินค้า";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 120;
-            // 
-            // tbRecBindingSource
-            // 
-            this.tbRecBindingSource.DataMember = "tb_Rec";
-            this.tbRecBindingSource.DataSource = this.databaseDataSet2;
-            // 
-            // databaseDataSet2
-            // 
-            this.databaseDataSet2.DataSetName = "databaseDataSet2";
-            this.databaseDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -230,10 +130,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "ชื่อสินค้า";
             // 
-            // tb_RecTableAdapter
-            // 
-            this.tb_RecTableAdapter.ClearBeforeFill = true;
-            // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
@@ -266,7 +162,6 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AutoGenerateColumns = false;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
@@ -276,87 +171,12 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.mtrDateDataGridViewTextBoxColumn,
-            this.mtrNameDataGridViewTextBoxColumn,
-            this.mtrUnitDataGridViewTextBoxColumn,
-            this.mtrCurrentDataGridViewTextBoxColumn,
-            this.mtrBroughtDataGridViewTextBoxColumn,
-            this.mtrTotalDataGridViewTextBoxColumn,
-            this.mtrUsedDataGridViewTextBoxColumn,
-            this.mtrBalDataGridViewTextBoxColumn});
-            this.dataGridView2.DataSource = this.tbMaterialBindingSource;
             this.dataGridView2.Location = new System.Drawing.Point(108, 73);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(5);
             this.dataGridView2.Size = new System.Drawing.Size(10, 10);
             this.dataGridView2.TabIndex = 7;
-            // 
-            // mtrDateDataGridViewTextBoxColumn
-            // 
-            this.mtrDateDataGridViewTextBoxColumn.DataPropertyName = "MtrDate";
-            this.mtrDateDataGridViewTextBoxColumn.HeaderText = "MtrDate";
-            this.mtrDateDataGridViewTextBoxColumn.Name = "mtrDateDataGridViewTextBoxColumn";
-            this.mtrDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mtrNameDataGridViewTextBoxColumn
-            // 
-            this.mtrNameDataGridViewTextBoxColumn.DataPropertyName = "MtrName";
-            this.mtrNameDataGridViewTextBoxColumn.HeaderText = "MtrName";
-            this.mtrNameDataGridViewTextBoxColumn.Name = "mtrNameDataGridViewTextBoxColumn";
-            this.mtrNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mtrUnitDataGridViewTextBoxColumn
-            // 
-            this.mtrUnitDataGridViewTextBoxColumn.DataPropertyName = "MtrUnit";
-            this.mtrUnitDataGridViewTextBoxColumn.HeaderText = "MtrUnit";
-            this.mtrUnitDataGridViewTextBoxColumn.Name = "mtrUnitDataGridViewTextBoxColumn";
-            this.mtrUnitDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mtrCurrentDataGridViewTextBoxColumn
-            // 
-            this.mtrCurrentDataGridViewTextBoxColumn.DataPropertyName = "MtrCurrent";
-            this.mtrCurrentDataGridViewTextBoxColumn.HeaderText = "MtrCurrent";
-            this.mtrCurrentDataGridViewTextBoxColumn.Name = "mtrCurrentDataGridViewTextBoxColumn";
-            this.mtrCurrentDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mtrBroughtDataGridViewTextBoxColumn
-            // 
-            this.mtrBroughtDataGridViewTextBoxColumn.DataPropertyName = "MtrBrought";
-            this.mtrBroughtDataGridViewTextBoxColumn.HeaderText = "MtrBrought";
-            this.mtrBroughtDataGridViewTextBoxColumn.Name = "mtrBroughtDataGridViewTextBoxColumn";
-            this.mtrBroughtDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mtrTotalDataGridViewTextBoxColumn
-            // 
-            this.mtrTotalDataGridViewTextBoxColumn.DataPropertyName = "MtrTotal";
-            this.mtrTotalDataGridViewTextBoxColumn.HeaderText = "MtrTotal";
-            this.mtrTotalDataGridViewTextBoxColumn.Name = "mtrTotalDataGridViewTextBoxColumn";
-            this.mtrTotalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mtrUsedDataGridViewTextBoxColumn
-            // 
-            this.mtrUsedDataGridViewTextBoxColumn.DataPropertyName = "MtrUsed";
-            this.mtrUsedDataGridViewTextBoxColumn.HeaderText = "MtrUsed";
-            this.mtrUsedDataGridViewTextBoxColumn.Name = "mtrUsedDataGridViewTextBoxColumn";
-            this.mtrUsedDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mtrBalDataGridViewTextBoxColumn
-            // 
-            this.mtrBalDataGridViewTextBoxColumn.DataPropertyName = "MtrBal";
-            this.mtrBalDataGridViewTextBoxColumn.HeaderText = "MtrBal";
-            this.mtrBalDataGridViewTextBoxColumn.Name = "mtrBalDataGridViewTextBoxColumn";
-            this.mtrBalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tbMaterialBindingSource
-            // 
-            this.tbMaterialBindingSource.DataMember = "tb_Material";
-            this.tbMaterialBindingSource.DataSource = this.databaseDataSet2;
-            // 
-            // tb_MaterialTableAdapter
-            // 
-            this.tb_MaterialTableAdapter.ClearBeforeFill = true;
             // 
             // label8
             // 
@@ -367,6 +187,86 @@
             this.label8.Size = new System.Drawing.Size(90, 17);
             this.label8.TabIndex = 33;
             this.label8.Text = "ประวัติการรับ";
+            // tbRecBindingSource
+            // 
+            this.tbRecBindingSource.DataMember = "tb_Rec";
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "RecDate";
+            this.dataGridViewTextBoxColumn1.HeaderText = "RecDate";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "RecAmount";
+            this.dataGridViewTextBoxColumn2.HeaderText = "RecAmount";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "RecUnit";
+            this.dataGridViewTextBoxColumn3.HeaderText = "RecUnit";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "RecPriceUnit";
+            this.dataGridViewTextBoxColumn4.HeaderText = "RecPriceUnit";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "RecPerson";
+            this.dataGridViewTextBoxColumn5.HeaderText = "RecPerson";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "RecStorage";
+            this.dataGridViewTextBoxColumn6.HeaderText = "RecStorage";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "RecName";
+            this.dataGridViewTextBoxColumn7.HeaderText = "RecName";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "RecNo";
+            this.dataGridViewTextBoxColumn8.HeaderText = "RecNo";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "RecPriceTotal";
+            this.dataGridViewTextBoxColumn9.HeaderText = "RecPriceTotal";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
+            // recCompDataGridViewTextBoxColumn
+            // 
+            this.recCompDataGridViewTextBoxColumn.DataPropertyName = "RecComp";
+            this.recCompDataGridViewTextBoxColumn.HeaderText = "RecComp";
+            this.recCompDataGridViewTextBoxColumn.Name = "recCompDataGridViewTextBoxColumn";
+            this.recCompDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // frm_Rec
             // 
@@ -387,10 +287,8 @@
             this.Text = "frm_Rec";
             this.Load += new System.EventHandler(this.frm_Rec_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbRecBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbMaterialBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbRecBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -412,33 +310,22 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn recPriceTotalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn recPersonDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn recStorageDataGridViewTextBoxColumn;
-        private databaseDataSet2 databaseDataSet2;
-        private System.Windows.Forms.BindingSource tbRecBindingSource;
-        private databaseDataSet2TableAdapters.tb_RecTableAdapter tb_RecTableAdapter;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.BindingSource tbMaterialBindingSource;
-        private databaseDataSet2TableAdapters.tb_MaterialTableAdapter tb_MaterialTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mtrDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mtrNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mtrUnitDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mtrCurrentDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mtrBroughtDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mtrTotalDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mtrUsedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mtrBalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.BindingSource tbRecBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn recCompDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn recCompDataGridViewTextBoxColumn;
     }
 }

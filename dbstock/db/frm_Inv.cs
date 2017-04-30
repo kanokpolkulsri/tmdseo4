@@ -26,10 +26,6 @@ namespace db
 
         private void frm_Inv_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'databaseDataSet3.tb_Report' table. You can move, or remove it, as needed.
-            this.tb_ReportTableAdapter.Fill(this.databaseDataSet3.tb_Report);
-            // TODO: This line of code loads data into the 'databaseDataSet.tb_Inv' table. You can move, or remove it, as needed.
-            this.tb_InvTableAdapter.Fill(this.databaseDataSet.tb_Inv);
             oda = new OleDbDataAdapter("SELECT ID, InvNo, InvName, InvAmount, InvUnit, InvPriceUnit, InvPriceTotal, InvStorage FROM tb_Inv", conn);
             dt = new DataTable();
             oda.Fill(dt);
@@ -168,6 +164,7 @@ namespace db
 
         private void printdgv(object sender, EventArgs e)
         {
+            /*
             string ProjName = " ", ProjWBS = " ";
             try
             {
@@ -208,10 +205,12 @@ namespace db
                 printer.PrintDataGridView(dataGridView2);
             }
             catch { }
+            */
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            /*
             //เช็คว่ามีตัวไหนที่ยังเหลือสินค้าอยู่
             DataSet ds = new DataSet();
             OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvNo, InvName, InvUnit, InvPriceUnit FROM tb_Inv WHERE InvAmount > 0", conn);
@@ -249,7 +248,7 @@ namespace db
                 conn.Close();
             }
             frm_Inv_Load(sender, e);
-            printdgv(sender, e);
+            //printdgv(sender, e);
             conn.Open();
             OleDbCommand delete = new OleDbCommand();
             delete.Connection = conn;
@@ -257,6 +256,7 @@ namespace db
             delete.ExecuteNonQuery();
             conn.Close();
             frm_Inv_Load(sender, e);
+            */
         }
     }
 }

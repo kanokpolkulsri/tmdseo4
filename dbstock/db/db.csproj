@@ -76,8 +76,11 @@
     <Reference Include="DGV Printer">
       <HintPath>bin\DGV Printer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -93,26 +96,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>databaseDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="databaseDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>databaseDataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="databaseDataSet2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>databaseDataSet2.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="databaseDataSet3.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>databaseDataSet3.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="forTempOut.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>forTempOut.xsd</DependentUpon>
     </Compile>
     <Compile Include="frm_admin.cs">
       <SubType>Form</SubType>
@@ -168,6 +151,12 @@
     <Compile Include="frm_tempRec.Designer.cs">
       <DependentUpon>frm_tempRec.cs</DependentUpon>
     </Compile>
+    <Compile Include="printt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printt.Designer.cs">
+      <DependentUpon>printt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frm_admin.resx">
@@ -197,6 +186,9 @@
     <EmbeddedResource Include="frm_tempRec.resx">
       <DependentUpon>frm_tempRec.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="printt.resx">
+      <DependentUpon>printt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -207,6 +199,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Report.rdlc" />
     <None Include="databaseDataSet.xsc">
       <DependentUpon>databaseDataSet.xsd</DependentUpon>
     </None>
@@ -218,50 +211,18 @@
     <None Include="databaseDataSet.xss">
       <DependentUpon>databaseDataSet.xsd</DependentUpon>
     </None>
-    <None Include="databaseDataSet1.xsc">
-      <DependentUpon>databaseDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="databaseDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>databaseDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="databaseDataSet1.xss">
-      <DependentUpon>databaseDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="databaseDataSet2.xsc">
-      <DependentUpon>databaseDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="databaseDataSet2.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>databaseDataSet2.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="databaseDataSet2.xss">
-      <DependentUpon>databaseDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="databaseDataSet3.xsc">
-      <DependentUpon>databaseDataSet3.xsd</DependentUpon>
-    </None>
-    <None Include="databaseDataSet3.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>databaseDataSet3.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="databaseDataSet3.xss">
-      <DependentUpon>databaseDataSet3.xsd</DependentUpon>
-    </None>
-    <None Include="forTempOut.xsc">
-      <DependentUpon>forTempOut.xsd</DependentUpon>
-    </None>
-    <None Include="forTempOut.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>forTempOut.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="forTempOut.xss">
-      <DependentUpon>forTempOut.xsd</DependentUpon>
-    </None>
+    <None Include="Properties\DataSources\db.databaseDataSetTableAdapters.TableAdapterManager+UpdateOrderOption.datasource" />
+    <None Include="Properties\DataSources\db.databaseDataSetTableAdapters.TableAdapterManager.datasource" />
+    <None Include="Properties\DataSources\db.databaseDataSetTableAdapters.tb_CustomerTableAdapter.datasource" />
+    <None Include="Properties\DataSources\db.databaseDataSetTableAdapters.tb_InvTableAdapter.datasource" />
+    <None Include="Properties\DataSources\db.databaseDataSetTableAdapters.tb_loginTableAdapter.datasource" />
+    <None Include="Properties\DataSources\db.databaseDataSetTableAdapters.tb_MaterialTableAdapter.datasource" />
+    <None Include="Properties\DataSources\db.databaseDataSetTableAdapters.tb_OutTableAdapter.datasource" />
+    <None Include="Properties\DataSources\db.databaseDataSetTableAdapters.tb_ProjectTableAdapter.datasource" />
+    <None Include="Properties\DataSources\db.databaseDataSetTableAdapters.tb_RecTableAdapter.datasource" />
+    <None Include="Properties\DataSources\db.databaseDataSetTableAdapters.tb_ReportTableAdapter.datasource" />
+    <None Include="Properties\DataSources\db.databaseDataSetTableAdapters.tb_tempOutTableAdapter.datasource" />
+    <None Include="Properties\DataSources\db.databaseDataSetTableAdapters.tb_tempRecTableAdapter.datasource" />
     <None Include="Properties\DataSources\frm_tempOut.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

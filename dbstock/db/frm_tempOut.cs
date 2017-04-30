@@ -23,19 +23,17 @@ namespace db
             InitializeComponent();
             textBox7.Text = Admin_Name;
             this.WindowState = FormWindowState.Maximized;
-            dataGridView2.Columns[0].HeaderText = "เลขที่\nItem";
+            /*dataGridView2.Columns[0].HeaderText = "เลขที่\nItem";
             dataGridView2.Columns[1].HeaderText = "รหัสสินค้า\nCode No.";
             dataGridView2.Columns[2].HeaderText = "รายการสินค้าและขนาดสินค้า\nDescription";
             dataGridView2.Columns[3].HeaderText = "จำนวน\nQuantity";
             dataGridView2.Columns[4].HeaderText = "หน่วยนับ\nUnit";
-            dataGridView2.Columns[5].HeaderText = "หมายเหตุ\nRemark";
+            dataGridView2.Columns[5].HeaderText = "หมายเหตุ\nRemark";*/
 
         }
 
         private void frm_tempOut_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'databaseDataSet1.tb_tempOut' table. You can move, or remove it, as needed.
-            this.tb_tempOutTableAdapter.Fill(this.databaseDataSet1.tb_tempOut);
             oda = new OleDbDataAdapter("SELECT * FROM tb_tempOut", conn);
             dt = new DataTable();
             oda.Fill(dt);

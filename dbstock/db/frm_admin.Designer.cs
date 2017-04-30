@@ -28,19 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loginNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loginFirstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loginLastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loginPositionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loginPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbloginBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.databaseDataSet = new db.databaseDataSet();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -56,7 +47,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.tb_loginTableAdapter = new db.databaseDataSetTableAdapters.tb_loginTableAdapter();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -66,8 +56,6 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbloginBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
@@ -90,83 +78,21 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.loginNameDataGridViewTextBoxColumn,
-            this.loginFirstNameDataGridViewTextBoxColumn,
-            this.loginLastNameDataGridViewTextBoxColumn,
-            this.loginPositionDataGridViewTextBoxColumn,
-            this.loginPhoneDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.tbloginBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(393, 181);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 5;
             this.dataGridView1.Size = new System.Drawing.Size(575, 232);
             this.dataGridView1.TabIndex = 7;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // loginNameDataGridViewTextBoxColumn
-            // 
-            this.loginNameDataGridViewTextBoxColumn.DataPropertyName = "LoginName";
-            this.loginNameDataGridViewTextBoxColumn.HeaderText = "Username";
-            this.loginNameDataGridViewTextBoxColumn.Name = "loginNameDataGridViewTextBoxColumn";
-            this.loginNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // loginFirstNameDataGridViewTextBoxColumn
-            // 
-            this.loginFirstNameDataGridViewTextBoxColumn.DataPropertyName = "LoginFirstName";
-            this.loginFirstNameDataGridViewTextBoxColumn.HeaderText = "ชื่อจริง";
-            this.loginFirstNameDataGridViewTextBoxColumn.Name = "loginFirstNameDataGridViewTextBoxColumn";
-            this.loginFirstNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // loginLastNameDataGridViewTextBoxColumn
-            // 
-            this.loginLastNameDataGridViewTextBoxColumn.DataPropertyName = "LoginLastName";
-            this.loginLastNameDataGridViewTextBoxColumn.HeaderText = "นามสกุล";
-            this.loginLastNameDataGridViewTextBoxColumn.Name = "loginLastNameDataGridViewTextBoxColumn";
-            this.loginLastNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // loginPositionDataGridViewTextBoxColumn
-            // 
-            this.loginPositionDataGridViewTextBoxColumn.DataPropertyName = "LoginPosition";
-            this.loginPositionDataGridViewTextBoxColumn.HeaderText = "ตำแหน่ง";
-            this.loginPositionDataGridViewTextBoxColumn.Name = "loginPositionDataGridViewTextBoxColumn";
-            this.loginPositionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // loginPhoneDataGridViewTextBoxColumn
-            // 
-            this.loginPhoneDataGridViewTextBoxColumn.DataPropertyName = "LoginPhone";
-            this.loginPhoneDataGridViewTextBoxColumn.HeaderText = "เบอร์โทร";
-            this.loginPhoneDataGridViewTextBoxColumn.Name = "loginPhoneDataGridViewTextBoxColumn";
-            this.loginPhoneDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tbloginBindingSource
-            // 
-            this.tbloginBindingSource.DataMember = "tb_login";
-            this.tbloginBindingSource.DataSource = this.databaseDataSet;
-            // 
-            // databaseDataSet
-            // 
-            this.databaseDataSet.DataSetName = "databaseDataSet";
-            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -309,10 +235,6 @@
             this.textBox8.TabIndex = 17;
             this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
-            // tb_loginTableAdapter
-            // 
-            this.tb_loginTableAdapter.ClearBeforeFill = true;
-            // 
             // textBox9
             // 
             this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
@@ -423,8 +345,6 @@
             this.Text = "frm_admin";
             this.Load += new System.EventHandler(this.frm_admin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbloginBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -451,15 +371,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
-        private databaseDataSet databaseDataSet;
-        private System.Windows.Forms.BindingSource tbloginBindingSource;
-        private databaseDataSetTableAdapters.tb_loginTableAdapter tb_loginTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn loginNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn loginFirstNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn loginLastNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn loginPositionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn loginPhoneDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label9;

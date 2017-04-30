@@ -24,9 +24,7 @@ namespace db
         }
 
         private void frm_tempRec_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'databaseDataSet.tb_tempRec' table. You can move, or remove it, as needed.
-            this.tb_tempRecTableAdapter.Fill(this.databaseDataSet.tb_tempRec);
+        { 
             oda = new OleDbDataAdapter("SELECT ID, RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage, RecComp FROM tb_tempRec", conn);
             dt = new DataTable();
             oda.Fill(dt);

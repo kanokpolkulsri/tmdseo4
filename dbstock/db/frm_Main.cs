@@ -227,5 +227,13 @@ namespace db
             next.MdiParent = this;
             next.Show();
         }
+
+        private void toolStripButton10_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            printt next = new printt();
+            next.MdiParent = this;
+            next.Show();
+        }
     }
 }

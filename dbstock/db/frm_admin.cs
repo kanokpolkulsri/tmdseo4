@@ -25,8 +25,6 @@ namespace db
 
         private void frm_admin_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'databaseDataSet.tb_login' table. You can move, or remove it, as needed.
-            this.tb_loginTableAdapter.Fill(this.databaseDataSet.tb_login);
             oda = new OleDbDataAdapter("SELECT * FROM tb_login", conn);
             dt = new DataTable();
             oda.Fill(dt);
@@ -143,7 +141,6 @@ namespace db
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
             conn.Open();
             OleDbCommand command2 = new OleDbCommand();
             command2.Connection = conn;
