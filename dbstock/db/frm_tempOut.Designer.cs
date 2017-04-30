@@ -165,17 +165,17 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.label1.Location = new System.Drawing.Point(68, 87);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 17);
+            this.label1.Size = new System.Drawing.Size(52, 17);
             this.label1.TabIndex = 17;
-            this.label1.Text = "วันที่เบิก (เดือน/วัน/ปี)";
+            this.label1.Text = "วันที่เบิก";
             // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textBox1.Location = new System.Drawing.Point(71, 107);
+            this.textBox1.Location = new System.Drawing.Point(125, 87);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(123, 21);
+            this.textBox1.Size = new System.Drawing.Size(112, 21);
             this.textBox1.TabIndex = 16;
             // 
             // dataGridView1
@@ -435,7 +435,7 @@
             this.itemDataGridViewTextBoxColumn1.HeaderText = "Item";
             this.itemDataGridViewTextBoxColumn1.Name = "itemDataGridViewTextBoxColumn1";
             this.itemDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.itemDataGridViewTextBoxColumn1.Width = 30;
+            this.itemDataGridViewTextBoxColumn1.Width = 20;
             // 
             // dataGridViewTextBoxColumn12
             // 
@@ -443,7 +443,7 @@
             this.dataGridViewTextBoxColumn12.HeaderText = "OutNo";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            this.dataGridViewTextBoxColumn12.Width = 70;
+            this.dataGridViewTextBoxColumn12.Width = 60;
             // 
             // dataGridViewTextBoxColumn13
             // 
@@ -451,6 +451,7 @@
             this.dataGridViewTextBoxColumn13.HeaderText = "OutName";
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
             this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Width = 140;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -458,7 +459,7 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "OutAmount";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 50;
+            this.dataGridViewTextBoxColumn5.Width = 40;
             // 
             // dataGridViewTextBoxColumn6
             // 
@@ -466,7 +467,7 @@
             this.dataGridViewTextBoxColumn6.HeaderText = "OutUnit";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 50;
+            this.dataGridViewTextBoxColumn6.Width = 40;
             // 
             // Column2
             // 
@@ -579,12 +580,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn OutPerson;
         private System.Windows.Forms.DataGridViewTextBoxColumn OutComp;
         private System.Windows.Forms.DataGridViewTextBoxColumn OutStorage;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.Label label9;
     }
 }

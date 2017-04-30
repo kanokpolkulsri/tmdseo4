@@ -43,7 +43,7 @@ namespace db
             oda2.Fill(dt2);
             dataGridView2.DataSource = dt2;
             dataGridView2.Columns[0].HeaderText = "Date";
-            dataGridView2.Columns[1].HeaderText = "Descripttion";
+            dataGridView2.Columns[1].HeaderText = "Description";
             dataGridView2.Columns[2].HeaderText = "Unit\nหน่วยนับ";
             dataGridView2.Columns[3].HeaderText = "Currently\nยอดสั่ง";
             dataGridView2.Columns[4].HeaderText = "Brought forward\nยอดยกมา";

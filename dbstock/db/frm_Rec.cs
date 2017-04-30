@@ -44,7 +44,7 @@ namespace db
             oda2.Fill(dt2);
             dataGridView2.DataSource = dt2;
             dataGridView2.Columns[0].HeaderText = "Date";
-            dataGridView2.Columns[1].HeaderText = "Descripttion";
+            dataGridView2.Columns[1].HeaderText = "Description";
             dataGridView2.Columns[2].HeaderText = "Unit\nหน่วยนับ";
             dataGridView2.Columns[3].HeaderText = "Currently\nยอดสั่ง";
             dataGridView2.Columns[4].HeaderText = "Brought forward\nยอดยกมา";
@@ -104,7 +104,7 @@ namespace db
 
             DGVPrinter printer = new DGVPrinter();
             printer.DocName = "mtrReport";
-            printer.Title = "Materials report";
+            printer.Title = "Materials history report";
             printer.TitleFont = new Font("Arial", 15, FontStyle.Bold);
             //printer.SubTitle = "\nหน่วยงานเลขที่ (WBS NO.) : " + ProjWBS + "      ชื่อหน่วยงาน (Project Name) : " + ProjName + " \nวันที่ขอเบิก (Requistion Date) : 09/09/1999         บริษัทที่ขอเบิก : " + textBox8.Text + "\nผู้อนุมัติเบิก (Approved By) : " + textBox7.Text + "\nผู้ขอเบิก (Requisted By) : " + textBox4.Text + "";
             printer.SubTitle = "Project Name : "+ProjName+" \nWBS No. : "+ProjWBS+"\nMaterial name : "+name+"";
@@ -115,7 +115,7 @@ namespace db
             printer.PageNumberInHeader = false;
             printer.PorportionalColumns = true;
             printer.PageText = "";
-            printer.Footer = "Report by _______________________________________                                                   Approved by _______________________________________\n\n    Date _______________________________________                                                               Date _______________________________________";
+            printer.Footer = "Reported by : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _                                                          Approved by : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n            Date : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _                                                               Date : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _";
             printer.FooterFont = new Font("Arial", 10, FontStyle.Regular);
             printer.SubTitleSpacing = 6;
             printer.HeaderCellAlignment = StringAlignment.Near;

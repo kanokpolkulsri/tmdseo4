@@ -41,7 +41,7 @@ namespace db
             oda.Fill(dt);
             dataGridView1.DataSource = dt;
             dataGridView2.DataSource = dt;
-            textBox1.Text = DateTime.Now.ToString("MM/dd/yyyy");
+            textBox1.Text = DateTime.Now.ToString("dd/MMM/yyyy");
             ActiveControl = textBox5;
             textBox8.ReadOnly = true;
         }
@@ -181,22 +181,58 @@ namespace db
         {
             OleDbCommand updateOutInMat = new OleDbCommand();
             updateOutInMat.Connection = conn;
+            OleDbCommand InsertOutInMat = new OleDbCommand();
+            InsertOutInMat.Connection = conn;
             conn.Open();
             DataSet ds = new DataSet();
-            OleDbDataAdapter da = new OleDbDataAdapter("SELECT OutNo, OutAmount FROM tb_tempOut", conn);
+            OleDbDataAdapter da = new OleDbDataAdapter("SELECT OutNo, OutAmount, OutName, OutUnit FROM tb_tempOut", conn);
             da.Fill(ds, "All_No_tempOut");
-            string text_outNo = " ", text_outAmount = " ";
-            int num_Out_Amount = 0;
+            OleDbCommand checkInMat = new OleDbCommand();
+            checkInMat.Connection = conn;
+            string text_outNo = " ", text_outAmount = " ", text_outName = " ", text_outUnit = " ";
+            int num_Out_Amount = 0, count2 = 0;
             foreach (DataRow dr in ds.Tables["All_No_TempOut"].Rows)
             {
                 text_outNo = dr.ItemArray[0] + "";
                 text_outAmount = dr.ItemArray[1] + "";
-                Console.WriteLine("{0} {1}", text_outNo, text_outAmount);
-                if (int.TryParse(text_outAmount, out num_Out_Amount))
+                text_outName = dr.ItemArray[2] + "";
+                text_outUnit = dr.ItemArray[3] + "";
+                checkInMat.CommandText = "SELECT * FROM tb_Material WHERE MtrNo = '" + text_outNo + "' AND MtrDate = '" + textBox1.Text + "'";
+                OleDbDataReader readerCheckInMat = checkInMat.ExecuteReader();
+                //int count2 = 0;
+                while (readerCheckInMat.Read())
                 {
-                    Console.WriteLine(num_Out_Amount);
-                    updateOutInMat.CommandText = "UPDATE tb_Material SET MtrUsed = MtrUsed + '" + num_Out_Amount + "' WHERE MtrNo = '" + text_outNo + "' AND MtrDate = '" + textBox1.Text + "'";
-                    updateOutInMat.ExecuteNonQuery();
+                    count2 = count2 + 1;
+                    Console.WriteLine(count2);
+                    if (count2 == 1)
+                    {
+                        break;
+                    }
+                }
+                if (count2 == 1)
+                {
+                    if (int.TryParse(text_outAmount, out num_Out_Amount))
+                    {
+                        Console.WriteLine(num_Out_Amount);
+                        updateOutInMat.CommandText = "UPDATE tb_Material SET MtrUsed = MtrUsed + '" + num_Out_Amount + "' WHERE MtrNo = '" + text_outNo + "' AND MtrDate = '" + textBox1.Text + "'";
+                        updateOutInMat.ExecuteNonQuery();
+                    }
+                }
+                else
+                {
+                    DataSet ds2 = new DataSet();
+                    OleDbDataAdapter da2 = new OleDbDataAdapter("SELECT InvAmount FROM tb_Inv WHERE InvNo = '" + text_outNo + "'", conn);
+                    da2.Fill(ds2, "inv_amount");
+                    string amountInInv = " ";
+                    foreach (DataRow dr2 in ds2.Tables["inv_amount"].Rows)
+                    {
+                        amountInInv = dr2.ItemArray[0] + "";
+                    }
+                    if (int.TryParse(text_outAmount, out num_Out_Amount))
+                    {
+                        InsertOutInMat.CommandText = "INSERT into tb_Material(MtrDate, MtrNo, MtrName, MtrUnit, MtrCurrent, MtrBrought, MtrUsed) VALUES ('" + textBox1.Text + "', '" + text_outNo + "', '" + text_outName + "', '" + text_outUnit + "', '" + 0 + "', '" + amountInInv + "', '"+num_Out_Amount+"')";
+                        InsertOutInMat.ExecuteNonQuery();
+                    }
                 }
             }
             conn.Close();
@@ -262,8 +298,8 @@ namespace db
             DGVPrinter printer = new DGVPrinter();
             printer.DocName = "ใบเบิกผลิตภัณฑ์";
             printer.Title = "ใบเบิกผลิตภัณฑ์ \n REQUISTION FOR MATERIAL / EQUIPMENT\n";
-            printer.TitleFont = new Font("Arial", 15, FontStyle.Regular);
-            printer.SubTitle = "\nหน่วยงานเลขที่ (WBS NO.) : "+ProjWBS+"      ชื่อหน่วยงาน (Project Name) : "+ProjName+" \nวันที่ขอเบิก (Requistion Date) : "+textBox1.Text+"         บริษัทที่ขอเบิก : "+textBox8.Text+"\nผู้อนุมัติเบิก (Approved By) : "+textBox7.Text+"\nผู้ขอเบิก (Requisted By) : "+textBox4.Text+"";
+            printer.TitleFont = new Font("Arial", 14, FontStyle.Regular);
+            printer.SubTitle = "\nชื่อหน่วยงาน (Project Name) : "+ProjName+ "                             WBS No. : " + ProjWBS + " \nบริษัทที่ขอเบิก : "+textBox8.Text+ "                              Requistion Date : " + textBox1.Text + " \n";
             printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
             printer.SubTitleAlignment = StringAlignment.Near;
             printer.SubTitleFont = new Font("Arial", 10, FontStyle.Regular);
@@ -271,8 +307,9 @@ namespace db
             printer.PageNumberInHeader = false;
             printer.PorportionalColumns = true;
             printer.PageText = "";
-            printer.Footer = "Thai meidensha Co.,Ltd.";
+            printer.Footer = "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _                                                                       _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\nผู้ขอเบิก (Requisted By) : " + textBox4.Text + "                                                           ผู้อนุมัติเบิก (Approved By) : " + textBox7.Text + "\nThai Meidensha Co.,Ltd.";
             printer.SubTitleSpacing = 6;
+            printer.FooterFont = new Font("Arial", 10, FontStyle.Regular);
             printer.HeaderCellAlignment = StringAlignment.Near;
             try
             {

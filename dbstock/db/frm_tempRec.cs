@@ -31,7 +31,7 @@ namespace db
             dt = new DataTable();
             oda.Fill(dt);
             dataGridView1.DataSource = dt;
-            textBox1.Text = DateTime.Now.ToString("MM/dd/yyyy");
+            textBox1.Text = DateTime.Now.ToString("dd/MMM/yyyy");
             ActiveControl = textBox5;
         }
 
