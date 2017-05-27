@@ -28,8 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.tb_tempOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.databaseDataSet = new db.databaseDataSet();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -41,14 +47,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OutPriceUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OutPriceTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OutAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OutPerson = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OutComp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OutStorage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
@@ -59,18 +57,39 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbtempOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label9 = new System.Windows.Forms.Label();
+            this.tb_tempOutTableAdapter = new db.databaseDataSetTableAdapters.tb_tempOutTableAdapter();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_tempOutBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbtempOutBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tb_tempOutBindingSource
+            // 
+            this.tb_tempOutBindingSource.DataMember = "tb_tempOut";
+            this.tb_tempOutBindingSource.DataSource = this.databaseDataSet;
+            // 
+            // databaseDataSet
+            // 
+            this.databaseDataSet.DataSetName = "databaseDataSet";
+            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button2.Location = new System.Drawing.Point(243, 488);
+            this.button2.Location = new System.Drawing.Point(321, 534);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(419, 32);
+            this.button2.Size = new System.Drawing.Size(396, 32);
             this.button2.TabIndex = 8;
             this.button2.Text = "บันทึกการเบิกสินค้า";
             this.button2.UseVisualStyleBackColor = true;
@@ -174,80 +193,12 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.OutDate,
-            this.OutPriceUnit,
-            this.OutPriceTotal,
-            this.OutAdmin,
-            this.OutPerson,
-            this.OutComp,
-            this.OutStorage});
             this.dataGridView1.Location = new System.Drawing.Point(71, 152);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 5;
             this.dataGridView1.Size = new System.Drawing.Size(1118, 318);
             this.dataGridView1.TabIndex = 15;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "ID";
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
-            // 
-            // OutDate
-            // 
-            this.OutDate.DataPropertyName = "OutDate";
-            this.OutDate.HeaderText = "วันที่";
-            this.OutDate.Name = "OutDate";
-            this.OutDate.ReadOnly = true;
-            this.OutDate.Width = 70;
-            // 
-            // OutPriceUnit
-            // 
-            this.OutPriceUnit.DataPropertyName = "OutPriceUnit";
-            this.OutPriceUnit.HeaderText = "ราคาต่อหน่วย";
-            this.OutPriceUnit.Name = "OutPriceUnit";
-            this.OutPriceUnit.ReadOnly = true;
-            // 
-            // OutPriceTotal
-            // 
-            this.OutPriceTotal.DataPropertyName = "OutPriceTotal";
-            this.OutPriceTotal.HeaderText = "ราคารวม";
-            this.OutPriceTotal.Name = "OutPriceTotal";
-            this.OutPriceTotal.ReadOnly = true;
-            this.OutPriceTotal.Width = 80;
-            // 
-            // OutAdmin
-            // 
-            this.OutAdmin.DataPropertyName = "OutAdmin";
-            this.OutAdmin.HeaderText = "ผู้ดูแลระบบ";
-            this.OutAdmin.Name = "OutAdmin";
-            this.OutAdmin.ReadOnly = true;
-            // 
-            // OutPerson
-            // 
-            this.OutPerson.DataPropertyName = "OutPerson";
-            this.OutPerson.HeaderText = "ชื่อผู้เบิก";
-            this.OutPerson.Name = "OutPerson";
-            this.OutPerson.ReadOnly = true;
-            // 
-            // OutComp
-            // 
-            this.OutComp.DataPropertyName = "OutComp";
-            this.OutComp.HeaderText = "บริษัทผู้เบิก";
-            this.OutComp.Name = "OutComp";
-            this.OutComp.ReadOnly = true;
-            // 
-            // OutStorage
-            // 
-            this.OutStorage.DataPropertyName = "OutStorage";
-            this.OutStorage.HeaderText = "ที่เก็บสินค้า";
-            this.OutStorage.Name = "OutStorage";
-            this.OutStorage.ReadOnly = true;
             // 
             // label5
             // 
@@ -270,7 +221,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1105, 493);
+            this.button3.Location = new System.Drawing.Point(1145, 476);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(44, 23);
             this.button3.TabIndex = 10;
@@ -282,7 +233,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label6.Location = new System.Drawing.Point(1014, 496);
+            this.label6.Location = new System.Drawing.Point(1054, 479);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(21, 17);
             this.label6.TabIndex = 31;
@@ -290,7 +241,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(1041, 495);
+            this.textBox6.Location = new System.Drawing.Point(1081, 478);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(58, 20);
             this.textBox6.TabIndex = 9;
@@ -335,6 +286,7 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AutoGenerateColumns = false;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
@@ -345,20 +297,77 @@
             this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Item,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
             this.Column2});
-            this.dataGridView2.Location = new System.Drawing.Point(998, 499);
+            this.dataGridView2.DataSource = this.tbtempOutBindingSource;
+            this.dataGridView2.Location = new System.Drawing.Point(1038, 486);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersWidth = 5;
             this.dataGridView2.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(5);
             this.dataGridView2.RowTemplate.Height = 21;
             this.dataGridView2.Size = new System.Drawing.Size(10, 10);
             this.dataGridView2.TabIndex = 37;
+            // 
+            // Item
+            // 
+            this.Item.DataPropertyName = "Item";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Item.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Item.HeaderText = "Item";
+            this.Item.Name = "Item";
+            this.Item.ReadOnly = true;
+            this.Item.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "OutNo";
+            this.dataGridViewTextBoxColumn8.HeaderText = "OutNo";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "OutName";
+            this.dataGridViewTextBoxColumn9.HeaderText = "OutName";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "OutAmount";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewTextBoxColumn3.HeaderText = "OutAmount";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "OutUnit";
+            this.dataGridViewTextBoxColumn4.HeaderText = "OutUnit";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 60;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Column2";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
+            this.Column2.Width = 130;
+            // 
+            // tbtempOutBindingSource
+            // 
+            this.tbtempOutBindingSource.DataMember = "tb_tempOut";
+            this.tbtempOutBindingSource.DataSource = this.databaseDataSet;
             // 
             // label9
             // 
@@ -370,11 +379,27 @@
             this.label9.TabIndex = 38;
             this.label9.Text = "เบิกสินค้า";
             // 
+            // tb_tempOutTableAdapter
+            // 
+            this.tb_tempOutTableAdapter.ClearBeforeFill = true;
+            // 
+            // reportViewer1
+            // 
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.tb_tempOutBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "db.tempOut.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(47, 486);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.Size = new System.Drawing.Size(655, 42);
+            this.reportViewer1.TabIndex = 39;
+            // 
             // frm_tempOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 621);
+            this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label8);
@@ -400,8 +425,11 @@
             this.Name = "frm_tempOut";
             this.Text = " ";
             this.Load += new System.EventHandler(this.frm_tempOut_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.tb_tempOutBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbtempOutBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -441,15 +469,17 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OutDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OutPriceUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OutPriceTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OutAdmin;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OutPerson;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OutComp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OutStorage;
         private System.Windows.Forms.Label label9;
+        private databaseDataSet databaseDataSet;
+        private System.Windows.Forms.BindingSource tbtempOutBindingSource;
+        private databaseDataSetTableAdapters.tb_tempOutTableAdapter tb_tempOutTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Item;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.Windows.Forms.BindingSource tb_tempOutBindingSource;
     }
 }

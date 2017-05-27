@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using Microsoft.Reporting.WinForms;
+using System.Drawing.Printing;
 
 namespace db
 {
@@ -28,6 +29,15 @@ namespace db
         {
             // TODO: This line of code loads data into the 'databaseDataSet.tb_Report' table. You can move, or remove it, as needed.
             this.tb_ReportTableAdapter.Fill(this.databaseDataSet.tb_Report);
+            System.Drawing.Printing.PageSettings pg = new System.Drawing.Printing.PageSettings();
+            pg.Margins.Top = 5;
+            pg.Margins.Bottom = 5;
+            pg.Margins.Left = 5;
+            pg.Margins.Right = 5;
+            System.Drawing.Printing.PaperSize size = new PaperSize();
+            size.RawKind = (int)PaperKind.A4;
+            pg.PaperSize = size;
+            reportViewer1.SetPageSettings(pg);
             oda = new OleDbDataAdapter("SELECT * FROM tb_Report", conn);
             dt = new DataTable();
             oda.Fill(dt);

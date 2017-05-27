@@ -28,6 +28,8 @@ namespace db
             toolStripButton7.Visible = true;
             toolStripButton8.Visible = false;
             toolStripButton9.Visible = false;
+            toolStripButton10.Visible = false;
+            toolStripButton11.Visible = false;
             CloseAllChildForm();
             frm_login next = new frm_login();
             next.MdiParent = this;
@@ -129,6 +131,8 @@ namespace db
                     toolStripButton7.Visible = false;
                     toolStripButton8.Visible = true;
                     toolStripButton9.Visible = true;
+                    toolStripButton10.Visible = true;
+                    toolStripButton11.Visible = true;
                     label1.Hide();
                     label2.Hide();
                     textBox1.Clear();
@@ -172,6 +176,8 @@ namespace db
             toolStripButton6.Visible = false;
             toolStripButton7.Visible = true;
             toolStripButton9.Visible = false;
+            toolStripButton10.Visible = false;
+            toolStripButton11.Visible = false;
             label1.Show();
             label2.Show();
             textBox1.Show();
@@ -209,6 +215,8 @@ namespace db
             toolStripButton7.Visible = true;
             toolStripButton8.Visible = false;
             toolStripButton9.Visible = false;
+            toolStripButton10.Visible = false;
+            toolStripButton11.Visible = false;
             label1.Show();
             label2.Show();
             textBox1.Show();
@@ -229,6 +237,14 @@ namespace db
         }
 
         private void toolStripButton10_Click(object sender, EventArgs e)
+        {
+            CloseAllChildForm();
+            MtrReport next = new MtrReport();
+            next.MdiParent = this;
+            next.Show();
+        }
+
+        private void toolStripButton11_Click(object sender, EventArgs e)
         {
             CloseAllChildForm();
             printt next = new printt();

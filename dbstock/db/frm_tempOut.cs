@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using DGVPrinterHelper;
+using System.IO;
+using Microsoft.Reporting.WinForms;
+using System.Drawing.Imaging;
+using System.Drawing.Printing;
 
 namespace db
 {
@@ -17,23 +21,24 @@ namespace db
         OleDbDataAdapter oda;
         DataTable dt;
         OleDbConnection conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\thaimaidensha\\dbstock\\database.accdb");
-
+        private string Comp = "", AppBy = "", ReqBy = "", ProjName = "", ProjWBS = "";
         public frm_tempOut(string Admin_Name)
         {
             InitializeComponent();
             textBox7.Text = Admin_Name;
             this.WindowState = FormWindowState.Maximized;
-            /*dataGridView2.Columns[0].HeaderText = "เลขที่\nItem";
+            dataGridView2.Columns[0].HeaderText = "เลขที่\nItem";
             dataGridView2.Columns[1].HeaderText = "รหัสสินค้า\nCode No.";
             dataGridView2.Columns[2].HeaderText = "รายการสินค้าและขนาดสินค้า\nDescription";
             dataGridView2.Columns[3].HeaderText = "จำนวน\nQuantity";
             dataGridView2.Columns[4].HeaderText = "หน่วยนับ\nUnit";
-            dataGridView2.Columns[5].HeaderText = "หมายเหตุ\nRemark";*/
-
+            dataGridView2.Columns[5].HeaderText = "หมายเหตุ\nRemark";
         }
 
         private void frm_tempOut_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'databaseDataSet.tb_tempOut' table. You can move, or remove it, as needed.
+            this.tb_tempOutTableAdapter.Fill(this.databaseDataSet.tb_tempOut);
             oda = new OleDbDataAdapter("SELECT * FROM tb_tempOut", conn);
             dt = new DataTable();
             oda.Fill(dt);
@@ -42,10 +47,16 @@ namespace db
             textBox1.Text = DateTime.Now.ToString("dd/MMM/yyyy");
             ActiveControl = textBox5;
             textBox8.ReadOnly = true;
+            this.reportViewer1.RefreshReport();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Comp = textBox8.Text;
+            AppBy = textBox7.Text;
+            ReqBy = textBox4.Text;
+
+            updateNumberItem();
             OleDbCommand addinv = new OleDbCommand();
             OleDbCommand checkInvNo = new OleDbCommand();
             conn.Open();
@@ -133,24 +144,13 @@ namespace db
                 }
                 else
                 {
-                    DataSet ds3 = new DataSet();
-                    OleDbDataAdapter da3 = new OleDbDataAdapter("SELECT COUNT(*) FROM tb_tempOut", conn);
-                    da3.Fill(ds3, "count_Item");
-                    string countItem = " ";
-                    int Item = 0;
-                    foreach (DataRow dr in ds3.Tables["count_Item"].Rows)
-                    {
-                        countItem = dr.ItemArray[0] + "";
-                        countItem = Convert.ToString(int.Parse(countItem) + 1);
-                        break;
-                    }
                     int amount_program, amount_db, checkamount = 0;
                     if (int.TryParse(text_Amount, out amount_db) && int.TryParse(textBox3.Text, out amount_program) && textBox1.Text != "" && textBox2.Text != "" && textBox3.Text != "" && textBox4.Text != "" && textBox7.Text != "")
                     {
                         checkamount = amount_db - amount_program;
                         if (checkamount >= 0 && text_invname != "" && text_recunit != "" && text_priceunit != "" && text_Amount != "" && text_storage != "")
                         {
-                            addinv.CommandText = "INSERT into tb_tempOut (Item, OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPerson, OutStorage, OutAdmin, OutComp) VALUES ('" + countItem + "', '" + textBox1.Text + "','" + textBox2.Text + "', '" + text_invname + "', '" + textBox3.Text + "','" + text_recunit + "','" + text_priceunit + "','" + textBox4.Text + "','" + text_storage + "','" + textBox7.Text + "','" + textBox8.Text + "')";
+                            addinv.CommandText = "INSERT into tb_tempOut (Item, OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPerson, OutStorage, OutAdmin, OutComp) VALUES ('1','" + textBox1.Text + "','" + textBox2.Text + "', '" + text_invname + "', '" + textBox3.Text + "','" + text_recunit + "','" + text_priceunit + "','" + textBox4.Text + "','" + text_storage + "','" + textBox7.Text + "','" + textBox8.Text + "')";
                             addinv.ExecuteNonQuery();
                             textBox1.Clear();
                             textBox2.Clear();
@@ -181,7 +181,6 @@ namespace db
             updateOutInMat.Connection = conn;
             OleDbCommand InsertOutInMat = new OleDbCommand();
             InsertOutInMat.Connection = conn;
-            conn.Open();
             DataSet ds = new DataSet();
             OleDbDataAdapter da = new OleDbDataAdapter("SELECT OutNo, OutAmount, OutName, OutUnit FROM tb_tempOut", conn);
             da.Fill(ds, "All_No_tempOut");
@@ -195,25 +194,27 @@ namespace db
                 text_outAmount = dr.ItemArray[1] + "";
                 text_outName = dr.ItemArray[2] + "";
                 text_outUnit = dr.ItemArray[3] + "";
+                conn.Open();
                 checkInMat.CommandText = "SELECT * FROM tb_Material WHERE MtrNo = '" + text_outNo + "' AND MtrDate = '" + textBox1.Text + "'";
                 OleDbDataReader readerCheckInMat = checkInMat.ExecuteReader();
                 //int count2 = 0;
                 while (readerCheckInMat.Read())
                 {
                     count2 = count2 + 1;
-                    Console.WriteLine(count2);
                     if (count2 == 1)
                     {
                         break;
                     }
                 }
+                conn.Close();
                 if (count2 == 1)
                 {
                     if (int.TryParse(text_outAmount, out num_Out_Amount))
                     {
-                        Console.WriteLine(num_Out_Amount);
+                        conn.Open();
                         updateOutInMat.CommandText = "UPDATE tb_Material SET MtrUsed = MtrUsed + '" + num_Out_Amount + "' WHERE MtrNo = '" + text_outNo + "' AND MtrDate = '" + textBox1.Text + "'";
                         updateOutInMat.ExecuteNonQuery();
+                        conn.Close();
                     }
                 }
                 else
@@ -228,92 +229,76 @@ namespace db
                     }
                     if (int.TryParse(text_outAmount, out num_Out_Amount))
                     {
+                        conn.Open();
                         InsertOutInMat.CommandText = "INSERT into tb_Material(MtrDate, MtrNo, MtrName, MtrUnit, MtrCurrent, MtrBrought, MtrUsed) VALUES ('" + textBox1.Text + "', '" + text_outNo + "', '" + text_outName + "', '" + text_outUnit + "', '" + 0 + "', '" + amountInInv + "', '"+num_Out_Amount+"')";
                         InsertOutInMat.ExecuteNonQuery();
+                        conn.Close();
                     }
                 }
             }
+        }
+
+        private void updateNumberItem()
+        {
+            DataSet ds3 = new DataSet();
+            OleDbDataAdapter da3 = new OleDbDataAdapter("SELECT OutNo, OutPerson, OutAdmin FROM tb_tempOut", conn);
+            da3.Fill(ds3, "count_Item");
+            string v_outNo = "", v_outPerson = "", v_outAdmin = "";
+            int Item = 1;
+            OleDbCommand updateItem = new OleDbCommand();
+            updateItem.Connection = conn;
+            conn.Open();
+            foreach (DataRow dr in ds3.Tables["count_Item"].Rows)
+            {
+                v_outNo = dr.ItemArray[0] + "";
+                v_outPerson = dr.ItemArray[1] + "";
+                v_outAdmin = dr.ItemArray[2] + "";
+                updateItem.CommandText = "UPDATE tb_tempOut SET tb_tempOut.Item = '"+Item+"' WHERE OutNo = '"+v_outNo+"' AND OutPerson = '"+v_outPerson+"' AND OutAdmin = '"+v_outAdmin+"' ";
+                updateItem.ExecuteNonQuery();
+                Item += 1;
+            }
             conn.Close();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             updateMtrByTempOut();
-
-            DataSet ds = new DataSet();
-            OleDbDataAdapter da = new OleDbDataAdapter("SELECT OutNo, OutAmount FROM tb_tempOut", conn);
-            da.Fill(ds, "Inv_no");
+            updateNumberItem();
+            
+            DataSet ds6 = new DataSet();
+            OleDbDataAdapter da6 = new OleDbDataAdapter("SELECT OutNo, OutAmount FROM tb_tempOut", conn);
+            da6.Fill(ds6, "Inv_no");
             OleDbCommand addtoinv = new OleDbCommand();
-            conn.Open();
             addtoinv.Connection = conn;
-
             string text_invno = " ", text_invamount = " ";
-            foreach (DataRow dr in ds.Tables["Inv_no"].Rows)
+            foreach (DataRow dr in ds6.Tables["Inv_no"].Rows)
             {
                 text_invno = dr.ItemArray[0] + "";
                 text_invamount = dr.ItemArray[1] + "";
+                conn.Open();
                 addtoinv.CommandText = "UPDATE tb_Inv SET InvAmount = InvAmount - '" + text_invamount + "' WHERE InvNo = '" + text_invno + "'";
                 addtoinv.ExecuteNonQuery();
+                conn.Close();
             }
-
+            conn.Open();
             OleDbCommand addtoout = new OleDbCommand();
             addtoout.Connection = conn;
             addtoout.CommandText = "INSERT into tb_Out(OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPriceTotal, OutPerson, OutStorage, OutAdmin, OutComp) SELECT OutDate, OutNo, OutName, OutAmount, OutUnit, OutPriceUnit, OutPriceTotal, OutPerson, OutStorage, OutAdmin, OutComp FROM tb_tempOut";
             addtoout.ExecuteNonQuery();
             MessageBox.Show("บันทึกข้อมูลเรียบร้อย");
 
-            printdgv(sender, e);
+            getDataProj();
+            print_tempOut next = new print_tempOut(Comp, AppBy, ReqBy, ProjName, ProjWBS);
+            next.Show();
 
-            OleDbCommand deleteTempOut = new OleDbCommand();
+            /*OleDbCommand deleteTempOut = new OleDbCommand();
             deleteTempOut.Connection = conn;
             deleteTempOut.CommandText = "DELETE * FROM tb_tempOut";
-            deleteTempOut.ExecuteNonQuery();
-            
+            deleteTempOut.ExecuteNonQuery();*/
             conn.Close();
             frm_tempOut_Load(sender, e);
            
-        }
-
-        private void printdgv(object sender, EventArgs e)
-        {
-            string ProjName = " ", ProjWBS = " ";
-            try
-            {
-                DataSet ds = new DataSet();
-                OleDbDataAdapter da = new OleDbDataAdapter("SELECT ProjName, ProjWBS FROM tb_Project", conn);
-                da.Fill(ds, "Inv_no");
-                foreach (DataRow dr in ds.Tables["Inv_no"].Rows)
-                {
-                    ProjName = dr.ItemArray[0] + "";
-                    ProjWBS = dr.ItemArray[1] + "";
-                    break;
-                }
-            }
-            catch
-            { }
-
-            DGVPrinter printer = new DGVPrinter();
-            printer.DocName = "ใบเบิกผลิตภัณฑ์";
-            printer.Title = "ใบเบิกผลิตภัณฑ์ \n REQUISTION FOR MATERIAL / EQUIPMENT\n";
-            printer.TitleFont = new Font("Arial", 14, FontStyle.Regular);
-            printer.SubTitle = "\nชื่อหน่วยงาน (Project Name) : "+ProjName+ "                             WBS No. : " + ProjWBS + " \nบริษัทที่ขอเบิก : "+textBox8.Text+ "                              Requistion Date : " + textBox1.Text + " \n";
-            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-            printer.SubTitleAlignment = StringAlignment.Near;
-            printer.SubTitleFont = new Font("Arial", 10, FontStyle.Regular);
-            printer.PageNumbers = false;
-            printer.PageNumberInHeader = false;
-            printer.PorportionalColumns = true;
-            printer.PageText = "";
-            printer.Footer = "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _                                                                       _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\nผู้ขอเบิก (Requisted By) : " + textBox4.Text + "                                                           ผู้อนุมัติเบิก (Approved By) : " + textBox7.Text + "\nThai Meidensha Co.,Ltd.";
-            printer.SubTitleSpacing = 6;
-            printer.FooterFont = new Font("Arial", 10, FontStyle.Regular);
-            printer.HeaderCellAlignment = StringAlignment.Near;
-            try
-            {
-                printer.PrintDataGridView(dataGridView2);
-            }
-            catch {}
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -368,6 +353,7 @@ namespace db
 
         private void button3_Click(object sender, EventArgs e)
         {
+            updateNumberItem();
             conn.Open();
             try
             {
@@ -420,6 +406,25 @@ namespace db
                     }
                     conn.Close();
                 }
+            }
+        }
+
+        void getDataProj() {
+            try
+            {
+                DataSet ds3 = new DataSet();
+                OleDbDataAdapter da3 = new OleDbDataAdapter("SELECT ProjName, ProjWBS FROM tb_Project", conn);
+                da3.Fill(ds3, "Inv_no");
+                foreach (DataRow dr in ds3.Tables["Inv_no"].Rows)
+                {
+                    ProjName = dr.ItemArray[0] + "";
+                    ProjWBS = dr.ItemArray[1] + "";
+                    break;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("ยังไม่ได้ลงทะเบียนโปรเจค/WBS No.");
             }
         }
     }

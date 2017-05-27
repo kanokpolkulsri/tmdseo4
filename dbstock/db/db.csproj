@@ -151,11 +151,23 @@
     <Compile Include="frm_tempRec.Designer.cs">
       <DependentUpon>frm_tempRec.cs</DependentUpon>
     </Compile>
+    <Compile Include="MtrReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MtrReport.Designer.cs">
+      <DependentUpon>MtrReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="printt.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="printt.Designer.cs">
       <DependentUpon>printt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="print_tempOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="print_tempOut.Designer.cs">
+      <DependentUpon>print_tempOut.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -186,8 +198,15 @@
     <EmbeddedResource Include="frm_tempRec.resx">
       <DependentUpon>frm_tempRec.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MtrReport.rdlc" />
+    <EmbeddedResource Include="MtrReport.resx">
+      <DependentUpon>MtrReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="printt.resx">
       <DependentUpon>printt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="print_tempOut.resx">
+      <DependentUpon>print_tempOut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -200,6 +219,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Report.rdlc" />
+    <EmbeddedResource Include="tempOut.rdlc" />
     <None Include="databaseDataSet.xsc">
       <DependentUpon>databaseDataSet.xsd</DependentUpon>
     </None>

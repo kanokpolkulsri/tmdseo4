@@ -26,27 +26,12 @@ namespace db
 
         private void frm_Rec_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'databaseDataSet.tb_Rec' table. You can move, or remove it, as needed.
+            this.tb_RecTableAdapter.Fill(this.databaseDataSet.tb_Rec);
             oda = new OleDbDataAdapter("SELECT RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage, RecComp FROM tb_Rec", conn);
             dt = new DataTable();
             oda.Fill(dt);
             dataGridView1.DataSource = dt;
-            dataGridView1.Columns[2].Width = 150;
-            dataGridView1.Columns[8].Width = 150;
-
-            OleDbDataAdapter oda2;
-            DataTable dt2;
-            oda2 = new OleDbDataAdapter("SELECT * FROM tb_Material", conn);
-            dt2 = new DataTable();
-            oda2.Fill(dt2);
-            dataGridView2.DataSource = dt2;
-            dataGridView2.Columns[0].HeaderText = "Date";
-            dataGridView2.Columns[1].HeaderText = "Description";
-            dataGridView2.Columns[2].HeaderText = "Unit\nหน่วยนับ";
-            dataGridView2.Columns[3].HeaderText = "Currently\nยอดสั่ง";
-            dataGridView2.Columns[4].HeaderText = "Brought forward\nยอดยกมา";
-            dataGridView2.Columns[5].HeaderText = "Total\nรวม";
-            dataGridView2.Columns[6].HeaderText = "Materials used\nยอดใช้ไป";
-            dataGridView2.Columns[7].HeaderText = "Balance\nยอดคงเหลือ";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -68,7 +53,6 @@ namespace db
         {
             if (textBox2.Text != "")
             {
-                OleDbConnection conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\thaimaidensha\\dbstock\\database.accdb");
                 oda = new OleDbDataAdapter("SELECT RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage FROM tb_Rec WHERE RecName like '" + textBox2.Text + "%'", conn);
                 dt = new DataTable();
                 oda.Fill(dt);
@@ -80,95 +64,5 @@ namespace db
             }
         }
 
-        private void printdgv(object sender, EventArgs e, string name)
-        {
-            string ProjName = " ", ProjWBS = " ";
-            try
-            {
-                DataSet ds = new DataSet();
-                OleDbDataAdapter da = new OleDbDataAdapter("SELECT ProjName, ProjWBS FROM tb_Project", conn);
-                da.Fill(ds, "Inv_no");
-                foreach (DataRow dr in ds.Tables["Inv_no"].Rows)
-                {
-                    ProjName = dr.ItemArray[0] + "";
-                    ProjWBS = dr.ItemArray[1] + "";
-                    break;
-                }
-            }
-            catch
-            { }
-
-            DGVPrinter printer = new DGVPrinter();
-            printer.DocName = "mtrReport";
-            printer.Title = "Materials history report";
-            printer.TitleFont = new Font("Arial", 15, FontStyle.Bold);
-            //printer.SubTitle = "\nหน่วยงานเลขที่ (WBS NO.) : " + ProjWBS + "      ชื่อหน่วยงาน (Project Name) : " + ProjName + " \nวันที่ขอเบิก (Requistion Date) : 09/09/1999         บริษัทที่ขอเบิก : " + textBox8.Text + "\nผู้อนุมัติเบิก (Approved By) : " + textBox7.Text + "\nผู้ขอเบิก (Requisted By) : " + textBox4.Text + "";
-            printer.SubTitle = "Project Name : "+ProjName+" \nWBS No. : "+ProjWBS+"\nMaterial name : "+name+"";
-            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-            printer.SubTitleAlignment = StringAlignment.Near;
-            printer.SubTitleFont = new Font("Arial", 10, FontStyle.Regular);
-            printer.PageNumbers = false;
-            printer.PageNumberInHeader = false;
-            printer.PorportionalColumns = true;
-            printer.PageText = "";
-            printer.Footer = "Reported by : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _                                                          Approved by : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n\n            Date : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _                                                               Date : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _";
-            printer.FooterFont = new Font("Arial", 10, FontStyle.Regular);
-            printer.SubTitleSpacing = 6;
-            printer.HeaderCellAlignment = StringAlignment.Near;
-            try
-            {
-                printer.PrintDataGridView(dataGridView2);
-            }
-            catch { }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                conn.Open();
-                OleDbCommand checkname_bq = new OleDbCommand();
-                checkname_bq.Connection = conn;
-                checkname_bq.CommandText = "SELECT * FROM tb_Inv WHERE InvNo = '" + textBox3.Text + "'";
-                int count = 0;
-                OleDbDataReader readerCheckNameBQ = checkname_bq.ExecuteReader();
-                while (readerCheckNameBQ.Read())
-                {
-                    count = count + 1;
-                    if (count == 1)
-                    {
-                        break;
-                    }
-                }
-                conn.Close();
-                if (count == 1)
-                {
-                    DataSet ds = new DataSet();
-                    OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvName FROM tb_Inv WHERE InvNo = '" + textBox3.Text + "'", conn);
-
-                    da.Fill(ds, "Inv_name");
-                    string text_name = " ";
-                    foreach (DataRow dr in ds.Tables["Inv_name"].Rows)
-                    {
-                        text_name = dr.ItemArray[0] + "";
-                        break;
-                    }
-                    oda = new OleDbDataAdapter("SELECT * FROM tb_Material WHERE MtrNo = '" + textBox3.Text + "'", conn);
-                    dt = new DataTable();
-                    oda.Fill(dt);
-                    dataGridView2.DataSource = dt;
-                    //printdgv(sender, e, text_name);
-                    textBox3.Clear();
-                }
-                else
-                {
-                    MessageBox.Show("ไม่มีรหัสสินค้านี้");
-                }
-            }
-            catch
-            {
-                frm_Rec_Load(sender, e);
-            }
-        }
     }
 }
