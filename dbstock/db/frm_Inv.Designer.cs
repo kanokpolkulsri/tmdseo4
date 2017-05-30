@@ -28,8 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invPriceUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invPriceTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invStorageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbInvBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.databaseDataSet = new db.databaseDataSet();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,14 +65,19 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.tb_InvTableAdapter = new db.databaseDataSetTableAdapters.tb_InvTableAdapter();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbInvBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
@@ -67,6 +87,16 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.invNoDataGridViewTextBoxColumn,
+            this.invNameDataGridViewTextBoxColumn,
+            this.invAmountDataGridViewTextBoxColumn,
+            this.invUnitDataGridViewTextBoxColumn,
+            this.invPriceUnitDataGridViewTextBoxColumn,
+            this.invPriceTotalDataGridViewTextBoxColumn,
+            this.invStorageDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.tbInvBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(334, 87);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -75,10 +105,90 @@
             this.dataGridView1.TabIndex = 100;
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 50;
+            // 
+            // invNoDataGridViewTextBoxColumn
+            // 
+            this.invNoDataGridViewTextBoxColumn.DataPropertyName = "InvNo";
+            this.invNoDataGridViewTextBoxColumn.HeaderText = "รหัสสินค้า";
+            this.invNoDataGridViewTextBoxColumn.Name = "invNoDataGridViewTextBoxColumn";
+            this.invNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invNameDataGridViewTextBoxColumn
+            // 
+            this.invNameDataGridViewTextBoxColumn.DataPropertyName = "InvName";
+            this.invNameDataGridViewTextBoxColumn.HeaderText = "ชื่อสินค้า";
+            this.invNameDataGridViewTextBoxColumn.Name = "invNameDataGridViewTextBoxColumn";
+            this.invNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.invNameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // invAmountDataGridViewTextBoxColumn
+            // 
+            this.invAmountDataGridViewTextBoxColumn.DataPropertyName = "InvAmount";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.invAmountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.invAmountDataGridViewTextBoxColumn.HeaderText = "จำนวน";
+            this.invAmountDataGridViewTextBoxColumn.Name = "invAmountDataGridViewTextBoxColumn";
+            this.invAmountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.invAmountDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // invUnitDataGridViewTextBoxColumn
+            // 
+            this.invUnitDataGridViewTextBoxColumn.DataPropertyName = "InvUnit";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.invUnitDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.invUnitDataGridViewTextBoxColumn.HeaderText = "หน่วย";
+            this.invUnitDataGridViewTextBoxColumn.Name = "invUnitDataGridViewTextBoxColumn";
+            this.invUnitDataGridViewTextBoxColumn.ReadOnly = true;
+            this.invUnitDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // invPriceUnitDataGridViewTextBoxColumn
+            // 
+            this.invPriceUnitDataGridViewTextBoxColumn.DataPropertyName = "InvPriceUnit";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.invPriceUnitDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.invPriceUnitDataGridViewTextBoxColumn.HeaderText = "ราคาต่อหน่วย";
+            this.invPriceUnitDataGridViewTextBoxColumn.Name = "invPriceUnitDataGridViewTextBoxColumn";
+            this.invPriceUnitDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invPriceTotalDataGridViewTextBoxColumn
+            // 
+            this.invPriceTotalDataGridViewTextBoxColumn.DataPropertyName = "InvPriceTotal";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.invPriceTotalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.invPriceTotalDataGridViewTextBoxColumn.HeaderText = "ราคารวม";
+            this.invPriceTotalDataGridViewTextBoxColumn.Name = "invPriceTotalDataGridViewTextBoxColumn";
+            this.invPriceTotalDataGridViewTextBoxColumn.ReadOnly = true;
+            this.invPriceTotalDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // invStorageDataGridViewTextBoxColumn
+            // 
+            this.invStorageDataGridViewTextBoxColumn.DataPropertyName = "InvStorage";
+            this.invStorageDataGridViewTextBoxColumn.HeaderText = "ที่เก็บสินค้า";
+            this.invStorageDataGridViewTextBoxColumn.Name = "invStorageDataGridViewTextBoxColumn";
+            this.invStorageDataGridViewTextBoxColumn.ReadOnly = true;
+            this.invStorageDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // tbInvBindingSource
+            // 
+            this.tbInvBindingSource.DataMember = "tb_Inv";
+            this.tbInvBindingSource.DataSource = this.databaseDataSet;
+            // 
+            // databaseDataSet
+            // 
+            this.databaseDataSet.DataSetName = "databaseDataSet";
+            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textBox1.Location = new System.Drawing.Point(159, 88);
+            this.textBox1.Location = new System.Drawing.Point(127, 36);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(131, 21);
             this.textBox1.TabIndex = 0;
@@ -87,7 +197,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label1.Location = new System.Drawing.Point(48, 88);
+            this.label1.Location = new System.Drawing.Point(16, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 17);
             this.label1.TabIndex = 2;
@@ -97,7 +207,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label2.Location = new System.Drawing.Point(48, 125);
+            this.label2.Location = new System.Drawing.Point(16, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 17);
             this.label2.TabIndex = 4;
@@ -106,7 +216,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textBox2.Location = new System.Drawing.Point(159, 123);
+            this.textBox2.Location = new System.Drawing.Point(127, 71);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(131, 21);
             this.textBox2.TabIndex = 1;
@@ -115,7 +225,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label3.Location = new System.Drawing.Point(48, 163);
+            this.label3.Location = new System.Drawing.Point(55, 485);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 17);
             this.label3.TabIndex = 6;
@@ -124,7 +234,7 @@
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textBox3.Location = new System.Drawing.Point(159, 161);
+            this.textBox3.Location = new System.Drawing.Point(159, 485);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(131, 21);
             this.textBox3.TabIndex = 2;
@@ -133,7 +243,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label4.Location = new System.Drawing.Point(48, 199);
+            this.label4.Location = new System.Drawing.Point(16, 108);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 17);
             this.label4.TabIndex = 8;
@@ -142,7 +252,7 @@
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textBox4.Location = new System.Drawing.Point(159, 199);
+            this.textBox4.Location = new System.Drawing.Point(127, 108);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(131, 21);
             this.textBox4.TabIndex = 3;
@@ -151,7 +261,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label5.Location = new System.Drawing.Point(48, 235);
+            this.label5.Location = new System.Drawing.Point(16, 144);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 17);
             this.label5.TabIndex = 10;
@@ -160,7 +270,7 @@
             // textBox5
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textBox5.Location = new System.Drawing.Point(159, 237);
+            this.textBox5.Location = new System.Drawing.Point(127, 146);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(131, 21);
             this.textBox5.TabIndex = 4;
@@ -169,7 +279,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label7.Location = new System.Drawing.Point(47, 275);
+            this.label7.Location = new System.Drawing.Point(15, 184);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 17);
             this.label7.TabIndex = 14;
@@ -178,7 +288,7 @@
             // textBox6
             // 
             this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.textBox6.Location = new System.Drawing.Point(159, 275);
+            this.textBox6.Location = new System.Drawing.Point(127, 184);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(131, 21);
             this.textBox6.TabIndex = 5;
@@ -224,7 +334,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button1.Location = new System.Drawing.Point(51, 332);
+            this.button1.Location = new System.Drawing.Point(19, 226);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(239, 39);
             this.button1.TabIndex = 6;
@@ -259,47 +369,55 @@
             this.textBox9.Size = new System.Drawing.Size(58, 20);
             this.textBox9.TabIndex = 22;
             // 
-            // label10
+            // tb_InvTableAdapter
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label10.Location = new System.Drawing.Point(48, 56);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(82, 17);
-            this.label10.TabIndex = 103;
-            this.label10.Text = "สินค้าคงคลัง";
+            this.tb_InvTableAdapter.ClearBeforeFill = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.groupBox1.Location = new System.Drawing.Point(39, 87);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(273, 301);
+            this.groupBox1.TabIndex = 101;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "เพิ่มสินค้า";
             // 
             // frm_Inv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 622);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frm_Inv";
             this.Text = "frm_Inv";
             this.Load += new System.EventHandler(this.frm_Inv_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbInvBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,6 +446,17 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Label label10;
+        private databaseDataSet databaseDataSet;
+        private System.Windows.Forms.BindingSource tbInvBindingSource;
+        private databaseDataSetTableAdapters.tb_InvTableAdapter tb_InvTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn invNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn invNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn invAmountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn invUnitDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn invPriceUnitDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn invPriceTotalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn invStorageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

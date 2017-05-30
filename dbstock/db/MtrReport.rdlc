@@ -918,7 +918,11 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Project Name :</Value>
+                  <Value>Project Name :  </Value>
+                  <Style />
+                </TextRun>
+                <TextRun>
+                  <Value>=Parameters!ProjName.Value</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -948,7 +952,11 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>WBS :</Value>
+                  <Value>WBS :  </Value>
+                  <Style />
+                </TextRun>
+                <TextRun>
+                  <Value>=Parameters!ProjWBS.Value</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -978,7 +986,11 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Material name :</Value>
+                  <Value>Material name :  </Value>
+                  <Style />
+                </TextRun>
+                <TextRun>
+                  <Value>=Parameters!text_name.Value</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -1077,9 +1089,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox39</rd:DefaultName>
           <Top>0.41667in</Top>
-          <Left>1.49875in</Left>
+          <Left>1.42583in</Left>
           <Height>0.25in</Height>
-          <Width>4.65625in</Width>
+          <Width>4.72917in</Width>
           <ZIndex>6</ZIndex>
           <Style>
             <Border>
@@ -1552,6 +1564,20 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="ProjName">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ProjWBS">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="text_name">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>faaabaa2-ff6e-45dd-9e0d-d0f1fb016e49</rd:ReportID>
 </Report>

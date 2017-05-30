@@ -38,6 +38,18 @@ namespace db
 
         private void CloseAllChildForm()
         {
+            toolStripButton1.Checked = false;
+            toolStripButton2.Checked = false;
+            toolStripButton3.Checked = false;
+            toolStripButton4.Checked = false;
+            toolStripButton5.Checked = false;
+            toolStripButton6.Checked = false;
+            toolStripButton7.Checked = false;
+            toolStripButton8.Checked = false;
+            toolStripButton9.Checked = false;
+            toolStripButton10.Checked = false;
+            toolStripButton11.Checked = false;
+
             foreach (Form showf in this.MdiChildren)
             {
                 showf.Close();
@@ -47,6 +59,7 @@ namespace db
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             CloseAllChildForm();
+            toolStripButton1.Checked = true;
             frm_admin next = new frm_admin();
             next.MdiParent = this;
             next.Show();
@@ -55,6 +68,7 @@ namespace db
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             CloseAllChildForm();
+            toolStripButton2.Checked = true;
             frm_Inv next = new frm_Inv();
             next.MdiParent = this;
             next.Show();
@@ -63,6 +77,7 @@ namespace db
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             CloseAllChildForm();
+            toolStripButton3.Checked = true;
             frm_tempRec next = new frm_tempRec(Admin_Name);
             next.MdiParent = this;
             next.Show();
@@ -71,6 +86,7 @@ namespace db
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
             CloseAllChildForm();
+            toolStripButton5.Checked = true;
             frm_Rec next = new frm_Rec();
             next.MdiParent = this;
             next.Show();
@@ -79,6 +95,7 @@ namespace db
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             CloseAllChildForm();
+            toolStripButton4.Checked = true;
             frm_tempOut next = new frm_tempOut(Admin_Name);
             next.MdiParent = this;
             next.Show();
@@ -87,6 +104,7 @@ namespace db
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
             CloseAllChildForm();
+            toolStripButton6.Checked = true;
             frm_Out next = new frm_Out();
             next.MdiParent = this;
             next.Show();
@@ -141,6 +159,7 @@ namespace db
                     textBox2.Hide();
                     button1.Hide();
                     CloseAllChildForm();
+                    toolStripButton2.Checked = true;
                     frm_Inv next = new frm_Inv();
                     next.MdiParent = this;
                     next.Show();
@@ -184,6 +203,7 @@ namespace db
             textBox2.Show();
             button1.Show();
             CloseAllChildForm();
+            toolStripButton2.Checked = true;
             frm_login next = new frm_login();
             next.MdiParent = this;
             next.Show();
@@ -223,6 +243,7 @@ namespace db
             textBox2.Show();
             button1.Show();
             CloseAllChildForm();
+            toolStripButton2.Checked = true;
             frm_login next = new frm_login();
             next.MdiParent = this;
             next.Show();
@@ -231,6 +252,7 @@ namespace db
         private void toolStripButton9_Click(object sender, EventArgs e)
         {
             CloseAllChildForm();
+            toolStripButton9.Checked = true;
             frm_Customer next = new frm_Customer();
             next.MdiParent = this;
             next.Show();
@@ -239,6 +261,7 @@ namespace db
         private void toolStripButton10_Click(object sender, EventArgs e)
         {
             CloseAllChildForm();
+            toolStripButton10.Checked = true;
             MtrReport next = new MtrReport();
             next.MdiParent = this;
             next.Show();
@@ -247,6 +270,7 @@ namespace db
         private void toolStripButton11_Click(object sender, EventArgs e)
         {
             CloseAllChildForm();
+            toolStripButton11.Checked = true;
             printt next = new printt();
             next.MdiParent = this;
             next.Show();

@@ -28,6 +28,8 @@ namespace db
         {
             // TODO: This line of code loads data into the 'databaseDataSet.tb_Rec' table. You can move, or remove it, as needed.
             this.tb_RecTableAdapter.Fill(this.databaseDataSet.tb_Rec);
+            // TODO: This line of code loads data into the 'databaseDataSet.tb_Rec' table. You can move, or remove it, as needed.
+            this.tb_RecTableAdapter.Fill(this.databaseDataSet.tb_Rec);
             oda = new OleDbDataAdapter("SELECT RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage, RecComp FROM tb_Rec", conn);
             dt = new DataTable();
             oda.Fill(dt);
@@ -64,5 +66,19 @@ namespace db
             }
         }
 
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox3.Text != "")
+            {
+                oda = new OleDbDataAdapter("SELECT RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage FROM tb_Rec WHERE RecDate like '" + textBox3.Text + "%'", conn);
+                dt = new DataTable();
+                oda.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
+            else
+            {
+                frm_Rec_Load(sender, e);
+            }
+        }
     }
 }

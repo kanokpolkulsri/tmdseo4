@@ -26,6 +26,8 @@ namespace db
 
         private void frm_Customer_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'databaseDataSet.tb_Customer' table. You can move, or remove it, as needed.
+            this.tb_CustomerTableAdapter.Fill(this.databaseDataSet.tb_Customer);
             oda = new OleDbDataAdapter("SELECT * FROM tb_Customer", conn);
             dt = new DataTable();
             oda.Fill(dt);

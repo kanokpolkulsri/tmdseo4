@@ -26,6 +26,8 @@ namespace db
 
         private void frm_Inv_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'databaseDataSet.tb_Inv' table. You can move, or remove it, as needed.
+            this.tb_InvTableAdapter.Fill(this.databaseDataSet.tb_Inv);
             oda = new OleDbDataAdapter("SELECT ID, InvNo, InvName, InvAmount, InvUnit, InvPriceUnit, InvPriceTotal, InvStorage FROM tb_Inv", conn);
             dt = new DataTable();
             oda.Fill(dt);
@@ -33,7 +35,8 @@ namespace db
             textBox3.Text = "0";
             textBox5.Text = "0";
             ActiveControl = textBox1;
-            textBox3.ReadOnly = true;
+            textBox3.Hide();
+            label3.Hide();
         }
 
         private void textBox8_TextChanged(object sender, EventArgs e)

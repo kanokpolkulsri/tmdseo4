@@ -18,7 +18,7 @@ namespace db
         OleDbDataAdapter oda;
         DataTable dt;
         OleDbConnection conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\thaimaidensha\\dbstock\\database.accdb");
-
+        private string text_name = " ", ProjName = " ", ProjWBS = " ";
         public MtrReport()
         {
             InitializeComponent();
@@ -82,7 +82,6 @@ namespace db
                     OleDbDataAdapter da = new OleDbDataAdapter("SELECT InvName FROM tb_Inv WHERE InvNo = '" + textBox1.Text + "'", conn);
 
                     da.Fill(ds, "Inv_name");
-                    string text_name = " ";
                     foreach (DataRow dr in ds.Tables["Inv_name"].Rows)
                     {
                         text_name = dr.ItemArray[0] + "";
@@ -98,17 +97,41 @@ namespace db
                 else
                 {
                     MessageBox.Show("ไม่มีรหัสสินค้านี้");
+                    textBox1.Clear();
                 }
             }
             catch
             {
                 MtrReport_Load(sender, e);
             }
+
+            getDataProj();
+            ReportParameter[] parameters = new ReportParameter[3];
+            parameters[0] = new ReportParameter("text_name", text_name);
+            parameters[1] = new ReportParameter("ProjName", ProjName);
+            parameters[2] = new ReportParameter("ProjWBS", ProjWBS);
+            this.reportViewer1.LocalReport.SetParameters(parameters);
+            this.reportViewer1.RefreshReport();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        void getDataProj()
         {
-
+            try
+            {
+                DataSet ds3 = new DataSet();
+                OleDbDataAdapter da3 = new OleDbDataAdapter("SELECT ProjName, ProjWBS FROM tb_Project", conn);
+                da3.Fill(ds3, "Inv_no");
+                foreach (DataRow dr in ds3.Tables["Inv_no"].Rows)
+                {
+                    ProjName = dr.ItemArray[0] + "";
+                    ProjWBS = dr.ItemArray[1] + "";
+                    break;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("ยังไม่ได้ลงทะเบียนโปรเจค/WBS No.");
+            }
         }
     }
 }

@@ -27,12 +27,6 @@ namespace db
             InitializeComponent();
             textBox7.Text = Admin_Name;
             this.WindowState = FormWindowState.Maximized;
-            dataGridView2.Columns[0].HeaderText = "เลขที่\nItem";
-            dataGridView2.Columns[1].HeaderText = "รหัสสินค้า\nCode No.";
-            dataGridView2.Columns[2].HeaderText = "รายการสินค้าและขนาดสินค้า\nDescription";
-            dataGridView2.Columns[3].HeaderText = "จำนวน\nQuantity";
-            dataGridView2.Columns[4].HeaderText = "หน่วยนับ\nUnit";
-            dataGridView2.Columns[5].HeaderText = "หมายเหตุ\nRemark";
         }
 
         private void frm_tempOut_Load(object sender, EventArgs e)
@@ -43,11 +37,9 @@ namespace db
             dt = new DataTable();
             oda.Fill(dt);
             dataGridView1.DataSource = dt;
-            dataGridView2.DataSource = dt;
             textBox1.Text = DateTime.Now.ToString("dd/MMM/yyyy");
             ActiveControl = textBox5;
             textBox8.ReadOnly = true;
-            this.reportViewer1.RefreshReport();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -58,12 +58,12 @@
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "db.MtrReport.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(48, 63);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(1101, 590);
+            this.reportViewer1.Size = new System.Drawing.Size(1101, 527);
             this.reportViewer1.TabIndex = 0;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(485, 36);
+            this.textBox1.Location = new System.Drawing.Point(48, 37);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(137, 20);
             this.textBox1.TabIndex = 1;
@@ -71,7 +71,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button1.Location = new System.Drawing.Point(628, 34);
+            this.button1.Location = new System.Drawing.Point(191, 34);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;

@@ -31,40 +31,16 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.button2 = new System.Windows.Forms.Button();
             this.tb_ReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.databaseDataSet = new db.databaseDataSet();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.button2 = new System.Windows.Forms.Button();
             this.tb_ReportTableAdapter = new db.databaseDataSetTableAdapters.tb_ReportTableAdapter();
             this.tbReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tb_ReportBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbReportBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // reportViewer1
-            // 
-            reportDataSource1.Name = "Report";
-            reportDataSource1.Value = this.tb_ReportBindingSource;
-            reportDataSource2.Name = "Proj";
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "db.Report.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(65, 54);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(793, 394);
-            this.reportViewer1.TabIndex = 0;
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.button2.Location = new System.Drawing.Point(324, 25);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(203, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "อัพเดตข้อมูล";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // tb_ReportBindingSource
             // 
@@ -75,6 +51,31 @@
             // 
             this.databaseDataSet.DataSetName = "databaseDataSet";
             this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // reportViewer1
+            // 
+            reportDataSource1.Name = "Report";
+            reportDataSource1.Value = this.tb_ReportBindingSource;
+            reportDataSource2.Name = "Proj";
+            reportDataSource2.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "db.Report.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(65, 66);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.Size = new System.Drawing.Size(878, 446);
+            this.reportViewer1.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.button2.Location = new System.Drawing.Point(65, 36);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(123, 24);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "อัพเดตข้อมูล";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // tb_ReportTableAdapter
             // 
@@ -89,7 +90,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 512);
+            this.ClientSize = new System.Drawing.Size(1002, 512);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.reportViewer1);
             this.Name = "printt";
