@@ -36,7 +36,6 @@ namespace db
         {
             // TODO: This line of code loads data into the 'databaseDataSet.tb_tempOut' table. You can move, or remove it, as needed.
             this.tb_tempOutTableAdapter.Fill(this.databaseDataSet.tb_tempOut);
-
             System.Drawing.Printing.PageSettings pg = new System.Drawing.Printing.PageSettings();
             pg.Margins.Top = 0;
             pg.Margins.Bottom = 0;
@@ -61,5 +60,26 @@ namespace db
             reportViewer1.SetPageSettings(pg);
             this.reportViewer1.RefreshReport();
         }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            if (PreClosingConfirmation() == System.Windows.Forms.DialogResult.Yes)
+            {
+                Dispose(true);
+                this.Close();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private DialogResult PreClosingConfirmation()
+        {
+            DialogResult res = System.Windows.Forms.MessageBox.Show(" Do you want to quit?          ", "Quit...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return res;
+        }
+
     }
 }

@@ -283,12 +283,14 @@ namespace db
             getDataProj();
             print_tempOut next = new print_tempOut(Comp, AppBy, ReqBy, ProjName, ProjWBS);
             next.Show();
-
-            /*OleDbCommand deleteTempOut = new OleDbCommand();
+             
+            OleDbCommand deleteTempOut = new OleDbCommand();
             deleteTempOut.Connection = conn;
             deleteTempOut.CommandText = "DELETE * FROM tb_tempOut";
-            deleteTempOut.ExecuteNonQuery();*/
+            deleteTempOut.ExecuteNonQuery();
             conn.Close();
+
+
             frm_tempOut_Load(sender, e);
            
         }

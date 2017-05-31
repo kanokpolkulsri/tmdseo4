@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Customer));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.custNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -355,6 +356,7 @@
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_Customer";
             this.Text = "frm_Customer";
             this.Load += new System.EventHandler(this.frm_Customer_Load);

@@ -30,13 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.databaseDataSet = new db.databaseDataSet();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(print_tempOut));
             this.tb_tempOutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.databaseDataSet = new db.databaseDataSet();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tb_tempOutTableAdapter = new db.databaseDataSetTableAdapters.tb_tempOutTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_tempOutBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tb_tempOutBindingSource
+            // 
+            this.tb_tempOutBindingSource.DataMember = "tb_tempOut";
+            this.tb_tempOutBindingSource.DataSource = this.databaseDataSet;
+            // 
+            // databaseDataSet
+            // 
+            this.databaseDataSet.DataSetName = "databaseDataSet";
+            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // reportViewer1
             // 
@@ -49,16 +60,6 @@
             this.reportViewer1.Size = new System.Drawing.Size(633, 352);
             this.reportViewer1.TabIndex = 0;
             // 
-            // databaseDataSet
-            // 
-            this.databaseDataSet.DataSetName = "databaseDataSet";
-            this.databaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tb_tempOutBindingSource
-            // 
-            this.tb_tempOutBindingSource.DataMember = "tb_tempOut";
-            this.tb_tempOutBindingSource.DataSource = this.databaseDataSet;
-            // 
             // tb_tempOutTableAdapter
             // 
             this.tb_tempOutTableAdapter.ClearBeforeFill = true;
@@ -69,11 +70,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 415);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "print_tempOut";
             this.Text = "print_tempOut";
             this.Load += new System.EventHandler(this.print_tempOut_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tb_tempOutBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }

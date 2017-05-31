@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MtrReport));
             this.tbMaterialBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.databaseDataSet = new db.databaseDataSet();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -91,6 +92,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MtrReport";
             this.Text = "MtrReport";
             this.Load += new System.EventHandler(this.MtrReport_Load);

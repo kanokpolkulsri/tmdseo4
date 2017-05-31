@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(printt));
             this.tb_ReportBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.databaseDataSet = new db.databaseDataSet();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -93,6 +94,7 @@
             this.ClientSize = new System.Drawing.Size(1002, 512);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "printt";
             this.Text = "printt";
             this.Load += new System.EventHandler(this.printt_Load);
