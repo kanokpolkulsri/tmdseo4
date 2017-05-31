@@ -28,9 +28,7 @@ namespace db
         {
             // TODO: This line of code loads data into the 'databaseDataSet.tb_Rec' table. You can move, or remove it, as needed.
             this.tb_RecTableAdapter.Fill(this.databaseDataSet.tb_Rec);
-            // TODO: This line of code loads data into the 'databaseDataSet.tb_Rec' table. You can move, or remove it, as needed.
-            this.tb_RecTableAdapter.Fill(this.databaseDataSet.tb_Rec);
-            oda = new OleDbDataAdapter("SELECT RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage, RecComp FROM tb_Rec", conn);
+            oda = new OleDbDataAdapter("SELECT * FROM tb_Rec", conn);
             dt = new DataTable();
             oda.Fill(dt);
             dataGridView1.DataSource = dt;
@@ -40,7 +38,7 @@ namespace db
         {
             if (textBox1.Text != "")
             {
-                oda = new OleDbDataAdapter("SELECT RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage FROM tb_Rec WHERE RecNo like '" + textBox1.Text + "%'", conn);
+                oda = new OleDbDataAdapter("SELECT * FROM tb_Rec WHERE RecNo like '" + textBox1.Text + "%'", conn);
                 dt = new DataTable();
                 oda.Fill(dt);
                 dataGridView1.DataSource = dt;
@@ -55,7 +53,7 @@ namespace db
         {
             if (textBox2.Text != "")
             {
-                oda = new OleDbDataAdapter("SELECT RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage FROM tb_Rec WHERE RecName like '" + textBox2.Text + "%'", conn);
+                oda = new OleDbDataAdapter("SELECT * FROM tb_Rec WHERE RecName like '" + textBox2.Text + "%'", conn);
                 dt = new DataTable();
                 oda.Fill(dt);
                 dataGridView1.DataSource = dt;
@@ -70,7 +68,7 @@ namespace db
         {
             if (textBox3.Text != "")
             {
-                oda = new OleDbDataAdapter("SELECT RecDate, RecNo, RecName, RecAmount, RecUnit, RecPriceUnit, RecPriceTotal, RecPerson, RecStorage FROM tb_Rec WHERE RecDate like '" + textBox3.Text + "%'", conn);
+                oda = new OleDbDataAdapter("SELECT * FROM tb_Rec WHERE RecDate like '" + textBox3.Text + "%'", conn);
                 dt = new DataTable();
                 oda.Fill(dt);
                 dataGridView1.DataSource = dt;
