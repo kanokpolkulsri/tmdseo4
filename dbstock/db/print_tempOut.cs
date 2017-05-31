@@ -38,10 +38,10 @@ namespace db
             this.tb_tempOutTableAdapter.Fill(this.databaseDataSet.tb_tempOut);
 
             System.Drawing.Printing.PageSettings pg = new System.Drawing.Printing.PageSettings();
-            pg.Margins.Top = 5;
-            pg.Margins.Bottom = 5;
-            pg.Margins.Left = 20;
-            pg.Margins.Right = 5;
+            pg.Margins.Top = 0;
+            pg.Margins.Bottom = 0;
+            pg.Margins.Left = 0;
+            pg.Margins.Right = 0;
             System.Drawing.Printing.PaperSize size = new PaperSize();
             size.RawKind = (int)PaperKind.A5;
             pg.PaperSize = size;

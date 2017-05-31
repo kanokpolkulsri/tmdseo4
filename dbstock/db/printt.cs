@@ -42,6 +42,8 @@ namespace db
             dt = new DataTable();
             oda.Fill(dt);
             tb_ReportBindingSource.DataSource = dt;
+            reportViewer1.ShowExportButton = false;
+            reportViewer1.ShowFindControls = false;
 
         }
 

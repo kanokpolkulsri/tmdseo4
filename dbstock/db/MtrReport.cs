@@ -34,6 +34,8 @@ namespace db
             pg.Landscape = true;
             reportViewer1.SetPageSettings(pg);
             this.reportViewer1.RefreshReport();
+            reportViewer1.ShowExportButton = false;
+            reportViewer1.ShowFindControls = false;
         }
 
         private void MtrReport_Load(object sender, EventArgs e)
